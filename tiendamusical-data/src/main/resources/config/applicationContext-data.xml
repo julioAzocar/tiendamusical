@@ -73,7 +73,7 @@
 	<tx:annotation-driven transaction-manager="transactionManager"/>
 	
 	<!-- etiqueta que permite las clase que se encargan las transacciones a la base de datos DAO -->
-	<jpa:repositories base-package="com.devpredator.tiendamusicaldata.repositories" entity-manager-factory-ref="entityManagerFactory" ></jpa:repositories>
+	<jpa:repositories base-package="com.devpredator.tiendamusicaldata.dao" entity-manager-factory-ref="entityManagerFactory" ></jpa:repositories>
 
 
 </beans>

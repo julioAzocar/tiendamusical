@@ -1,0 +1,43 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"      
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+<title>Pantalla Login</title>
+
+ <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+ 
+	<h:outputStylesheet library="css" name="login.css"></h:outputStylesheet>
+
+</h:head>
+
+<h:body style="background-color:black;">
+      
+
+	<div class="ui-fluid">
+      	
+      	<h:form id="formLogin">
+      	<p:growl id="growl" showDetail="true" skipDetailIfEqualsSummary="true"/> <!-- 5 seg y se cierra  skipDetailIfEqualsSummary si son iguales -->
+      	<!-- <p:growl id="growl" showDetail="true" />  usuario la cierra-->
+      	
+      	<p:panel id="pnlLogin" header="Inicio de Sesion" style="text-align:center;">
+      	
+      	<p:graphicImage name="imagenes/fondo_musica.png" width="20%"/>
+      	
+      		<p:panelGrid id="pnlGridLogin" columns="1" layout="grid"
+                 columnClasses="ui-g-12 ui-md-12"
+                 styleClass="ui-panelgrid-blank ui-fluid">
+      			<p:outputLabel value="Usuario:" for="txtUsuario" styleClass="formLabelText" style="float:left"> </p:outputLabel>
+      			<p:inputText id="txtUsuario" value="#{loginController.usuario}" required="true" requiredMessage="El usuario es requerido"></p:inputText>
+      			
+      			<p:outputLabel value="Password:" for="txtPassword" styleClass="formLabelText"  style="float:left"> </p:outputLabel>
+      			<p:password id="txtPassword" value="#{loginController.password}" required="true"  requiredMessage="El password es requerido"></p:password>
+      			<p:outputLabel></p:outputLabel>
+      			<p:commandButton value="Entrar" action="#{loginController.entrar}" update="pnlGridLogin,growl"></p:commandButton>
+      		</p:panelGrid>
+      	</p:panel>
+		</h:form>
+	</div>
+		
+</h:body>
+</html>

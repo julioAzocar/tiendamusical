@@ -1,0 +1,14 @@
+/*sobbreescribir estilos de primefaces */
+/* chrome inpeccionar y copiar control a modificar estilo*/
+
+body .ui-panel .ui-panel-content{
+	background-color: black;
+}
+
+body .ui-panelgrid .ui-panelgrid-cell{
+	background-color: black;
+}
+
+.formLabelText{
+	color:white;
+}
