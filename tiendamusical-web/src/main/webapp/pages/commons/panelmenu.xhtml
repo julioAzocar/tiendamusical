@@ -1,0 +1,20 @@
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"      
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"> <!-- permite incluir contenido de otras pantallas para usar scripts.xhtml-->
+
+
+        <p:panelMenu style="width:100%">
+            <p:submenu label="Mi Perfil" rendered="true" expanded="true">
+                <p:menuitem value="Informacion General" icon="pi pi-user-edit"/>
+                <p:menuitem value="Mis Compras"  icon="pi pi-shopping-cart"/>
+            </p:submenu>
+            <p:submenu label="Administracion" rendered="false">
+                <p:menuitem value="Website"  icon="pi pi-external-link"/>
+            </p:submenu>
+        </p:panelMenu>
+        
+
+</ui:composition>

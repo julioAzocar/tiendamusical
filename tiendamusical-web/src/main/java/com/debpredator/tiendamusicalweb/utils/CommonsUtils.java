@@ -1,7 +1,10 @@
 package com.debpredator.tiendamusicalweb.utils;
 
+import java.io.IOException;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.application.FacesMessage.Severity;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
 //compartir funciones globales o comunes entre clase del proyecto
@@ -20,4 +23,19 @@ public class CommonsUtils {
 		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(severity, sumary, detail));
 		
 	}
+	
+	
+	/**
+	 * permite redireccionar entre pantallas de aplicativo
+	 * con throws pasa el error para manipularlo afuera
+	 * */
+	
+	public static void redireccionar(String url) throws IOException {
+		ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+		String contextPath = ec.getRequestContextPath();
+		ec.redirect(contextPath + url);
+		
+	}
+	
+	
 }

@@ -1,0 +1,19 @@
+
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"      
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"> <!-- permite incluir contenido de otras pantallas para usar scripts.xhtml-->
+
+
+   <p:menubar id="menubar" style="background-color: black">
+   		<f:facet name="options">
+   			<p:commandButton id="btnShopping" icon="pi pi-shopping-cart"></p:commandButton>
+   			<p:commandButton id="btnCerrarSesion" icon="pi pi-sign-in" action="#{sessionClosed.cerrarSesion}"></p:commandButton>
+   		</f:facet>
+   
+   </p:menubar>
+   <!-- mantiene barra siempre visible -->
+	<p:sticky target="menubar"></p:sticky>
+</ui:composition>
