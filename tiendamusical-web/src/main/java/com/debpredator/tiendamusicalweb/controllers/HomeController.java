@@ -1,8 +1,10 @@
 package com.debpredator.tiendamusicalweb.controllers;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
@@ -10,6 +12,8 @@ import javax.faces.bean.ViewScoped;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.debpredator.tiendamusicalweb.session.SessionBean;
+import com.debpredator.tiendamusicalweb.utils.CommonsUtils;
 import com.devpredator.tiendamusicalentities.dto.ArtistaAlbumDTO;
 import com.devpredator.tiendamusicalservices.service.HomeService;
 
@@ -30,6 +34,18 @@ public class HomeController {
 	@ManagedProperty("#{homeServiceImpl}")
 	private HomeService homeServiceImpl;
 	
+	//bean de sesion
+	@ManagedProperty("#{sessionBean}")
+	private SessionBean sessionBean;
+	
+	public SessionBean getSessionBean() {
+		return sessionBean;
+	}
+
+	public void setSessionBean(SessionBean sessionBean) {
+		this.sessionBean = sessionBean;
+	}
+
 	@PostConstruct
 	public void init() {
 		//System.out.println("Home inicializado");
@@ -57,6 +73,21 @@ public class HomeController {
 		}
 	}
 	
+	public void verDetalleAlbum(ArtistaAlbumDTO artistaAlbumDTO) {
+		
+		this.sessionBean.setArtistaAlbumDTO(artistaAlbumDTO);
+		
+		try {
+			CommonsUtils.redireccionar("/pages/cliente/detalle.xhtml");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			
+			CommonsUtils.mostrarMensaje(FacesMessage.SEVERITY_ERROR,"¡ERROR!",e.getMessage());
+			LOGGER.error("Ver Detalle : " +  e.getMessage());
+			e.printStackTrace();
+		}
+		
+	}
 	
 	public String getFiltro() {
 		return filtro;

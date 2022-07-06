@@ -4,6 +4,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
+import com.devpredator.tiendamusicalentities.dto.ArtistaAlbumDTO;
 import com.devpredator.tiendamusicalentities.entities.Persona;
 
 /*
@@ -18,7 +19,15 @@ public class SessionBean {
 
 	//objeto persona que se mantendra en sesion
 	private Persona persona;
-	
+	private ArtistaAlbumDTO artistaAlbumDTO;//album selecionado en home
+
+	public ArtistaAlbumDTO getArtistaAlbumDTO() {
+		return artistaAlbumDTO;
+	}
+
+	public void setArtistaAlbumDTO(ArtistaAlbumDTO artistaAlbumDTO) {
+		this.artistaAlbumDTO = artistaAlbumDTO;
+	}
 
 	@PostConstruct
 	public void init() {
