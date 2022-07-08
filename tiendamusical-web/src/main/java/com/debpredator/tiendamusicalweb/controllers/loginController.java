@@ -4,17 +4,23 @@
 package com.debpredator.tiendamusicalweb.controllers;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.view.ViewScoped;
+import javax.faces.bean.ViewScoped;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import com.debpredator.tiendamusicalweb.session.SessionBean;
 import com.debpredator.tiendamusicalweb.utils.CommonsUtils;
+import com.devpredator.tiendamusicalentities.entities.CarritoAlbum;
 import com.devpredator.tiendamusicalentities.entities.Persona;
 import com.devpredator.tiendamusicalservices.service.LoginService;
 
@@ -24,7 +30,7 @@ import com.devpredator.tiendamusicalservices.service.LoginService;
  */
 
 @ManagedBean//javax.faces.bean.ManagedBean;
-@ViewScoped //javax.faces.view.ViewScoped;
+@ViewScoped //javax.faces.bean.ViewScoped;
 public class loginController {
 	private String usuario; //usuario de persona
 	private String password;//contraseña de persona 
@@ -37,7 +43,9 @@ public class loginController {
 	@ManagedProperty("#{sessionBean}")
 	private SessionBean sessionBean;
 	
-
+	//objeto permite mostrar los mensajes de log en consola de servidor o archivo externo
+	private static final Logger LOGGER = LogManager.getLogger(loginController.class);//import org.apache.logging.log4j.Logger;
+	
 	
 	public SessionBean getSessionBean() {
 		return sessionBean;
@@ -70,23 +78,32 @@ public class loginController {
 		
 		String strMsg = "";
 		
+		try {
 			Persona personaConsultada = this.loginServiceImpl.consultarUsuarioLogin(this.usuario, this.password);
+
+			  List<CarritoAlbum> carritoAlbumFiltrados = personaConsultada.getCarrito().getCarritosAlbum().stream().filter(ca ->
+				ca.getEstatus().equals("PENDIENTE")).collect(Collectors.toList());
 			
+			  //solo carritos pendientes
+			  personaConsultada.getCarrito().setCarritosAlbum(carritoAlbumFiltrados);
+			  
+			  LOGGER.info("INFO");
+			  
 			if (personaConsultada != null) {
-				
-				try {
-					
-					this.sessionBean.setPersona(personaConsultada);//sesion persona logueada
-				
-					CommonsUtils.redireccionar("/pages/commons/dashboard.xhtml");
-				} catch (IOException e) {
-					strMsg = e.getMessage();
-					CommonsUtils.mostrarMensaje(FacesMessage.SEVERITY_ERROR,"¡ERROR!",strMsg);
-				}
-			}else {
-				CommonsUtils.mostrarMensaje(FacesMessage.SEVERITY_ERROR,"¡UPS!","El usuario y/o contraseña son incorrectos");
-			
+
+				this.sessionBean.setPersona(personaConsultada);// sesion persona logueada
+
+				CommonsUtils.redireccionar("/pages/commons/dashboard.xhtml");
+			} else {
+				CommonsUtils.mostrarMensaje(FacesMessage.SEVERITY_ERROR, "¡UPS!",
+						"El usuario y/o contraseña son incorrectos");
+
 			}
+
+		} catch (IOException e) {
+			strMsg = e.getMessage();
+			CommonsUtils.mostrarMensaje(FacesMessage.SEVERITY_ERROR, "¡ERROR!", strMsg);
+		}
 			
 
 

@@ -20,6 +20,16 @@ public class SessionBean {
 	//objeto persona que se mantendra en sesion
 	private Persona persona;
 	private ArtistaAlbumDTO artistaAlbumDTO;//album selecionado en home
+	//total compra por sesion
+	private float totalCompra;
+	
+	public float getTotalCompra() {
+		return totalCompra;
+	}
+
+	public void setTotalCompra(float totalCompra) {
+		this.totalCompra = totalCompra;
+	}
 
 	public ArtistaAlbumDTO getArtistaAlbumDTO() {
 		return artistaAlbumDTO;

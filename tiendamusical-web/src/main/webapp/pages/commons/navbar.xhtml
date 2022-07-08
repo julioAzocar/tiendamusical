@@ -10,12 +10,12 @@
 
    <p:menubar id="menubar" style="background-color: black;padding:5px;">
    		<f:facet name="options">
-   			<p:commandButton id="btnShopping" icon="pi pi-shopping-cart">
-   				<pe:badge content="10" rendered="true"> </pe:badge>
+   			<p:commandButton id="btnShopping" icon="pi pi-shopping-cart" 
+   			action="#{navBarController.redireccionar}">
+   				<pe:badge content="#{sessionBean.persona.carrito.carritosAlbum.size()}" rendered="true"> </pe:badge>
    			</p:commandButton>
    			<p:commandButton id="btnCerrarSesion" icon="pi pi-sign-in" action="#{sessionClosed.cerrarSesion}"></p:commandButton>
    		</f:facet>
-   
    </p:menubar>
    <!-- mantiene barra siempre visible -->
 	<p:sticky target="menubar"></p:sticky>

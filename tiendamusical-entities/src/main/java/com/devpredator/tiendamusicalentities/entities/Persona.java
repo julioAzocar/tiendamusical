@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /*
@@ -52,6 +53,21 @@ public class Persona extends Common{
 	@JoinColumn(name = "idRol")
 	private Rol rol;
 
+	
+	
+	
+	public Carrito getCarrito() {
+		return carrito;
+	}
+
+	public void setCarrito(Carrito carrito) {
+		this.carrito = carrito;
+	}
+
+	@OneToOne(mappedBy = "persona")
+	private Carrito carrito;
+	
+	
 	public long getIdPersona() {
 		return idPersona;
 	}

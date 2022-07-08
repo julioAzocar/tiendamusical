@@ -1,0 +1,20 @@
+
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"      
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+       xmlns:pe="http://primefaces.org/ui/extensions"> <!-- permite incluir contenido de otras pantallas para usar scripts.xhtml-->
+
+	<h:outputStylesheet library="css" name="steps.css"/>
+	
+	<div class="p-col" style="width:90%; margin:0px auto">
+	    <p:steps id="stepsCompra" style="margin-bottom: 20px;" activeIndex="0" readonly="">
+	        <p:menuitem value="Productos Seleccionados"/>
+	        <p:menuitem value="Realizar Pago"/>
+	        <p:menuitem value="Confirmación"/>
+	    </p:steps>
+	</div>
+
+</ui:composition>
