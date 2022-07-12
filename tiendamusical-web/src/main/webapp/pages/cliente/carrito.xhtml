@@ -72,7 +72,7 @@ body .ui-panelgrid .ui-panelgrid-cell {
 													
 													<h:outputText value="Precio" style="color:white;" />
 													<h:outputText value="#{carritoAlbum.album.valor}" style="color:white;">
-														<f:convertNumber type="currency" currencyCode="USD" currencySymbol="$"></f:convertNumber>
+														<f:convertNumber type="currency" currencyCode="MXN" currencySymbol="$"></f:convertNumber>
 													</h:outputText>
 
 												</h:panelGrid>
@@ -103,7 +103,7 @@ body .ui-panelgrid .ui-panelgrid-cell {
         
 												<p:outputLabel value="#{carritoAlbum.album.valor * carritoAlbum.cantidad}"
 												style="color:white">
-													<f:convertNumber type="currency" currencyCode="USD" currencySymbol="$"> </f:convertNumber>
+													<f:convertNumber type="currency" currencyCode="MXN" currencySymbol="$"> </f:convertNumber>
 												</p:outputLabel>
 										</h:panelGrid>
 										
@@ -123,7 +123,7 @@ body .ui-panelgrid .ui-panelgrid-cell {
 
 												<p:outputLabel value="Total : " style="color:white"></p:outputLabel>
 												<p:outputLabel value="#{carritoController.sessionBean.totalCompra}" style="color:white">
-														<f:convertNumber type="currency" currencyCode="USD" currencySymbol="$"> </f:convertNumber>
+														<f:convertNumber type="currency" currencyCode="MXN" currencySymbol="$"> </f:convertNumber>
 												</p:outputLabel>
 												
 												
@@ -139,7 +139,7 @@ body .ui-panelgrid .ui-panelgrid-cell {
 												<p:outputLabel value="" style="color:white"></p:outputLabel>
 												<p:outputLabel value="" style="color:white"></p:outputLabel>
 
-								<p:commandButton value="Continuar" 
+								<p:commandButton value="Continuar" action="#{pasosController.cambiarPasos('/pages/cliente/pago.xhtml',1)}"
 									style="margin-top: 20px; width:80%;"
 									disabled="#{empty carritoController.sessionBean.persona.carrito.carritosAlbum}">
 									

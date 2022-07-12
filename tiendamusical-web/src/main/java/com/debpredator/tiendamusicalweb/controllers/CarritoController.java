@@ -32,6 +32,7 @@ public class CarritoController {
 	
 	@PostConstruct
 	public void init() {
+		this.sessionBean.setPaso(0);
 		System.out.println("iniciando controler carrito");
 		this.CalcularTotal();
 		

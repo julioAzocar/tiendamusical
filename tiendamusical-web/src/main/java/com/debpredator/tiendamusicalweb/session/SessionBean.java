@@ -28,6 +28,17 @@ public class SessionBean {
 	//orden generada por Paypal
 	private HttpResponse<Order> order;
 	
+	//numero de paso en procesos de compra
+	private int paso;
+	
+	public int getPaso() {
+		return paso;
+	}
+
+	public void setPaso(int paso) {
+		this.paso = paso;
+	}
+
 	public float getTotalCompra() {
 		return totalCompra;
 	}
