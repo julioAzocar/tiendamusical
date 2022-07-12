@@ -40,11 +40,11 @@ public class CarritoController {
 
 	public void CalcularTotal() {
 		
-		LOGGER.info("Calculando Total");
-		
 		float total = carritoServiceImpl.calcularTotal(this.sessionBean.getPersona().getCarrito());
 		
 		this.sessionBean.setTotalCompra(total);
+		
+		LOGGER.info("CarritoController - Calculando Total:" + total);
 	}
 
 	public void eliminarAlbumCarrito(CarritoAlbum carritoAlbum) {

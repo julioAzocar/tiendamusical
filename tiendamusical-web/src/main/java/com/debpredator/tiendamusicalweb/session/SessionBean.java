@@ -6,6 +6,8 @@ import javax.faces.bean.SessionScoped;
 
 import com.devpredator.tiendamusicalentities.dto.ArtistaAlbumDTO;
 import com.devpredator.tiendamusicalentities.entities.Persona;
+import com.paypal.http.HttpResponse;
+import com.paypal.orders.Order;
 
 /*
  * mantendra informacion en sesion de usuario
@@ -22,6 +24,9 @@ public class SessionBean {
 	private ArtistaAlbumDTO artistaAlbumDTO;//album selecionado en home
 	//total compra por sesion
 	private float totalCompra;
+	
+	//orden generada por Paypal
+	private HttpResponse<Order> order;
 	
 	public float getTotalCompra() {
 		return totalCompra;
@@ -52,6 +57,15 @@ public class SessionBean {
 	
 	public Persona getPersona() {
 		return persona;
+	}
+
+	public void setOrder(HttpResponse<Order> response) {
+		// TODO Auto-generated method stub
+		this.order = response;
+	}
+
+	public HttpResponse<Order> getOrder() {
+		return order;
 	}
 
 

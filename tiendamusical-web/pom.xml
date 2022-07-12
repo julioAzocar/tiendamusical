@@ -70,7 +70,21 @@
             <artifactId>primefaces-extensions</artifactId>
             <version>${primefaces-extensions-version}</version>
         </dependency>
-        
+        <!-- para usar con paypal servlet-->
+		<dependency>
+		    <groupId>javax.servlet</groupId>
+		    <artifactId>javax.servlet-api</artifactId>
+		    <version>${servlet-api-version}</version>
+		    <scope>provided</scope>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
+		<dependency>
+		    <groupId>com.google.code.gson</groupId>
+		    <artifactId>gson</artifactId>
+		    <version>${gson-version}</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>

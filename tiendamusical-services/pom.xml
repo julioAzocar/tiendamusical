@@ -29,6 +29,26 @@
 	    <version>0.0.1-SNAPSHOT</version>
     </dependency>
 
+ <!-- ::::::::::::::::DEPENDENCIA PAYPAL::::::::::::::::::::-->
+ 
+     <dependency>
+	    <artifactId>checkout-sdk</artifactId>
+	    <groupId>com.paypal.sdk</groupId>
+	    <version>${paypal-checkout-version}</version>
+    </dependency>
+    
+     <dependency>
+	    <artifactId>json</artifactId>
+	    <groupId>org.json</groupId>
+	    <version>${paypal-json-version}</version>
+    </dependency>
+ 
+      <dependency>
+	    <artifactId>commons-lang3</artifactId>
+	    <groupId>org.apache.commons</groupId>
+	    <version>${paypal-commons-version}</version>
+    </dependency>
+    
   </dependencies>
 
   <build>

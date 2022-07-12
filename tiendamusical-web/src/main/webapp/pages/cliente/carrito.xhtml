@@ -72,7 +72,7 @@ body .ui-panelgrid .ui-panelgrid-cell {
 													
 													<h:outputText value="Precio" style="color:white;" />
 													<h:outputText value="#{carritoAlbum.album.valor}" style="color:white;">
-														<f:convertNumber type="currency" currencyCode="CLP" currencySymbol="$"></f:convertNumber>
+														<f:convertNumber type="currency" currencyCode="USD" currencySymbol="$"></f:convertNumber>
 													</h:outputText>
 
 												</h:panelGrid>
@@ -103,7 +103,7 @@ body .ui-panelgrid .ui-panelgrid-cell {
         
 												<p:outputLabel value="#{carritoAlbum.album.valor * carritoAlbum.cantidad}"
 												style="color:white">
-													<f:convertNumber type="currency" currencyCode="CLP" currencySymbol="$"> </f:convertNumber>
+													<f:convertNumber type="currency" currencyCode="USD" currencySymbol="$"> </f:convertNumber>
 												</p:outputLabel>
 										</h:panelGrid>
 										
@@ -123,7 +123,7 @@ body .ui-panelgrid .ui-panelgrid-cell {
 
 												<p:outputLabel value="Total : " style="color:white"></p:outputLabel>
 												<p:outputLabel value="#{carritoController.sessionBean.totalCompra}" style="color:white">
-														<f:convertNumber type="currency" currencyCode="CLP" currencySymbol="$"> </f:convertNumber>
+														<f:convertNumber type="currency" currencyCode="USD" currencySymbol="$"> </f:convertNumber>
 												</p:outputLabel>
 												
 												

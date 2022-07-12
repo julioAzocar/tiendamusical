@@ -42,7 +42,7 @@
 										<h:outputText value="#{artistaAlbumDTO.artista.nombre}" style="color:white"></h:outputText>
 										<h:outputText value="#{artistaAlbumDTO.album.nombre}" style="color:white"></h:outputText>
 										<h:outputText value="#{artistaAlbumDTO.album.valor}" style="color:white">
-										<f:convertNumber type="currency" currencyCode="CLP" currencySymbol="$"></f:convertNumber>
+										<f:convertNumber type="currency" currencyCode="USD" currencySymbol="$"></f:convertNumber>
 										</h:outputText>
 									</h:panelGrid>
 				            	</p:panel>
@@ -67,7 +67,7 @@
 												
 												<h:outputText value="Precio" style="color:white;"/>
 												<h:outputText value="#{artistaAlbumDTO.album.valor}" style="color:white;">
-													<f:convertNumber type="currency" currencyCode="CLP" currencySymbol="$"></f:convertNumber>
+													<f:convertNumber type="currency" currencyCode="USD" currencySymbol="$"></f:convertNumber>
 												</h:outputText>
 												
 												<p:commandButton url="#" icon="pi pi-shopping-cart" title="Shop"></p:commandButton>
