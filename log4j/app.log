@@ -2892,3 +2892,82 @@ The last packet sent successfully to the server was 0 milliseconds ago. The driv
 17:02:02.260 [http-nio-8080-exec-3] INFO  com.debpredator.tiendamusicalweb.paypal.PayPalCreateOrder - Ingresando a la funcion de crearOrden...
 17:02:02.602 [http-nio-8080-exec-3] INFO  com.debpredator.tiendamusicalweb.paypal.PayPalCreateOrder - [{"amountWithBreakdown":{"amountBreakdown":{"handling":{"currencyCode":"MXN","value":"10.0"},"itemTotal":{"currencyCode":"MXN","value":"1400.0"},"shipping":{"currencyCode":"MXN","value":"20.0"},"shippingDiscount":{"currencyCode":"MXN","value":"20.0"},"taxTotal":{"currencyCode":"MXN","value":"90.0"}},"currencyCode":"MXN","value":"1500.0"},"items":[{"category":"PHYSICAL_GOODS","description":"Es el tercer álbum de estudio de la banda británic","name":"The Number Of The Beast","quantity":"3","sku":"sku1","tax":{"currencyCode":"MXN","value":"10.0"},"unitAmount":{"currencyCode":"MXN","value":"200.0"}},{"category":"PHYSICAL_GOODS","description":"Es el tercer álbum de estudio de la banda de thras","name":"Master of Puppets","quantity":"4","sku":"sku1","tax":{"currencyCode":"MXN","value":"10.0"},"unitAmount":{"currencyCode":"MXN","value":"100.0"}},{"category":"PHYSICAL_GOODS","description":"Es el tercer álbum de estudio de la banda británic","name":"The Number Of The Beast","quantity":"1","sku":"sku1","tax":{"currencyCode":"MXN","value":"10.0"},"unitAmount":{"currencyCode":"MXN","value":"200.0"}},{"category":"PHYSICAL_GOODS","description":"Es el décimo álbum de estudio de la banda estadoun","name":"Hardwired...to Self-Destruct","quantity":"1","sku":"sku1","tax":{"currencyCode":"MXN","value":"10.0"},"unitAmount":{"currencyCode":"MXN","value":"200.0"}}],"shippingDetail":{"addressPortable":{"addressLine1":"MI CALLE 9","addressLine2":"MI COLONIA","adminArea1":"MÉXICO","adminArea2":"MONTERREY","countryCode":"MX","postalCode":"55555"},"name":{"fullName":"devpredator2 devpredator2 devpredator2"}}}]
 17:11:25.105 [main] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+19:19:24.303 [main] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization started
+19:19:24.939 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+19:19:25.105 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 133 ms. Found 3 JPA repository interfaces.
+19:19:25.671 [main] INFO  org.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+19:19:25.832 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 5.4.22.Final
+19:19:26.166 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+19:19:30.444 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+19:19:32.278 [main] INFO  org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+19:19:32.300 [main] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+19:19:33.398 [main] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext initialized in 9074 ms
+19:19:43.930 [http-nio-8080-exec-8] INFO  com.debpredator.tiendamusicalweb.controllers.loginController - INFO
+19:19:44.355 [http-nio-8080-exec-7] INFO  com.debpredator.tiendamusicalweb.controllers.HomeController - Home inicializado
+19:19:44.356 [http-nio-8080-exec-7] INFO  com.debpredator.tiendamusicalweb.controllers.HomeController - INFO
+19:19:44.356 [http-nio-8080-exec-7] ERROR com.debpredator.tiendamusicalweb.controllers.HomeController - ERROR
+19:19:44.356 [http-nio-8080-exec-7] WARN  com.debpredator.tiendamusicalweb.controllers.HomeController - WARN
+19:19:44.356 [http-nio-8080-exec-7] FATAL com.debpredator.tiendamusicalweb.controllers.HomeController - FALTAL
+19:19:50.361 [http-nio-8080-exec-10] INFO  com.debpredator.tiendamusicalweb.controllers.HomeController - BUSQUEDA: m
+19:19:51.627 [http-nio-8080-exec-10] INFO  com.debpredator.tiendamusicalweb.controllers.HomeController - Artista : Arctic Monkeys
+19:19:51.628 [http-nio-8080-exec-10] INFO  com.debpredator.tiendamusicalweb.controllers.HomeController - Artista : Iron Maiden
+19:19:51.628 [http-nio-8080-exec-10] INFO  com.debpredator.tiendamusicalweb.controllers.HomeController - Artista : Metallica
+19:19:51.628 [http-nio-8080-exec-10] INFO  com.debpredator.tiendamusicalweb.controllers.HomeController - Artista : Metallica
+19:19:51.628 [http-nio-8080-exec-10] INFO  com.debpredator.tiendamusicalweb.controllers.HomeController - Artista : Muse
+19:19:51.740 [http-nio-8080-exec-3] INFO  com.debpredator.tiendamusicalweb.controllers.HomeController - BUSQUEDA: me
+19:19:52.569 [http-nio-8080-exec-3] INFO  com.debpredator.tiendamusicalweb.controllers.HomeController - Artista : Iron Maiden
+19:19:52.569 [http-nio-8080-exec-3] INFO  com.debpredator.tiendamusicalweb.controllers.HomeController - Artista : Metallica
+19:19:52.570 [http-nio-8080-exec-3] INFO  com.debpredator.tiendamusicalweb.controllers.HomeController - Artista : Metallica
+19:53:18.349 [main] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+10:58:44.044 [main] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization started
+10:58:44.633 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+10:58:44.799 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 133 ms. Found 4 JPA repository interfaces.
+10:58:45.357 [main] INFO  org.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+10:58:45.544 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 5.4.22.Final
+10:58:45.867 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+10:58:49.803 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+10:58:51.669 [main] INFO  org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+10:58:51.687 [main] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+10:58:52.941 [main] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext initialized in 8878 ms
+10:59:08.738 [http-nio-8080-exec-3] INFO  com.debpredator.tiendamusicalweb.controllers.loginController - INFO
+10:59:09.267 [http-nio-8080-exec-5] INFO  com.debpredator.tiendamusicalweb.controllers.HomeController - Home inicializado
+10:59:09.267 [http-nio-8080-exec-5] INFO  com.debpredator.tiendamusicalweb.controllers.HomeController - INFO
+10:59:09.267 [http-nio-8080-exec-5] ERROR com.debpredator.tiendamusicalweb.controllers.HomeController - ERROR
+10:59:09.267 [http-nio-8080-exec-5] WARN  com.debpredator.tiendamusicalweb.controllers.HomeController - WARN
+10:59:09.267 [http-nio-8080-exec-5] FATAL com.debpredator.tiendamusicalweb.controllers.HomeController - FALTAL
+10:59:11.948 [http-nio-8080-exec-4] INFO  com.debpredator.tiendamusicalweb.controllers.CarritoController - CarritoController - Calculando Total:1400.0
+10:59:14.040 [http-nio-8080-exec-6] INFO  com.debpredator.tiendamusicalweb.controllers.PasosController - iniciando controler pasos
+10:59:14.153 [http-nio-8080-exec-3] INFO  com.debpredator.tiendamusicalweb.controllers.CarritoController - CarritoController - Calculando Total:1400.0
+10:59:20.364 [http-nio-8080-exec-8] INFO  com.debpredator.tiendamusicalweb.paypal.PayPalServlet - Generando orden de PayPal 1
+10:59:20.492 [http-nio-8080-exec-8] INFO  com.debpredator.tiendamusicalweb.paypal.PayPalServlet - Generando orden de PayPal 2: 1400.0
+10:59:20.493 [http-nio-8080-exec-8] INFO  com.debpredator.tiendamusicalweb.paypal.PayPalCreateOrder - Ingresando a la funcion de crearOrden...
+10:59:20.807 [http-nio-8080-exec-8] INFO  com.debpredator.tiendamusicalweb.paypal.PayPalCreateOrder - [{"amountWithBreakdown":{"amountBreakdown":{"handling":{"currencyCode":"MXN","value":"10.0"},"itemTotal":{"currencyCode":"MXN","value":"1400.0"},"shipping":{"currencyCode":"MXN","value":"20.0"},"shippingDiscount":{"currencyCode":"MXN","value":"20.0"},"taxTotal":{"currencyCode":"MXN","value":"90.0"}},"currencyCode":"MXN","value":"1500.0"},"items":[{"category":"PHYSICAL_GOODS","description":"Es el tercer álbum de estudio de la banda británic","name":"The Number Of The Beast","quantity":"3","sku":"sku1","tax":{"currencyCode":"MXN","value":"10.0"},"unitAmount":{"currencyCode":"MXN","value":"200.0"}},{"category":"PHYSICAL_GOODS","description":"Es el tercer álbum de estudio de la banda de thras","name":"Master of Puppets","quantity":"4","sku":"sku1","tax":{"currencyCode":"MXN","value":"10.0"},"unitAmount":{"currencyCode":"MXN","value":"100.0"}},{"category":"PHYSICAL_GOODS","description":"Es el tercer álbum de estudio de la banda británic","name":"The Number Of The Beast","quantity":"1","sku":"sku1","tax":{"currencyCode":"MXN","value":"10.0"},"unitAmount":{"currencyCode":"MXN","value":"200.0"}},{"category":"PHYSICAL_GOODS","description":"Es el décimo álbum de estudio de la banda estadoun","name":"Hardwired...to Self-Destruct","quantity":"1","sku":"sku1","tax":{"currencyCode":"MXN","value":"10.0"},"unitAmount":{"currencyCode":"MXN","value":"200.0"}}],"shippingDetail":{"addressPortable":{"addressLine1":"MI CALLE 9","addressLine2":"MI COLONIA","adminArea1":"MÉXICO","adminArea2":"MONTERREY","countryCode":"MX","postalCode":"55555"},"name":{"fullName":"devpredator2 devpredator2 devpredator2"}}}]
+11:01:45.659 [http-nio-8080-exec-1] INFO  com.debpredator.tiendamusicalweb.controllers.PagoController - iniciando controler Pago
+11:01:45.662 [http-nio-8080-exec-1] INFO  com.debpredator.tiendamusicalweb.controllers.PagoController - iniciando guardar factura
+11:03:03.528 [main] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+11:07:05.758 [main] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization started
+11:07:06.330 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+11:07:06.484 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 122 ms. Found 4 JPA repository interfaces.
+11:07:07.021 [main] INFO  org.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+11:07:07.164 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 5.4.22.Final
+11:07:07.465 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+11:07:11.290 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+11:07:12.999 [main] INFO  org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+11:07:13.016 [main] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+11:07:14.117 [main] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext initialized in 8348 ms
+11:08:12.742 [http-nio-8080-exec-5] INFO  com.debpredator.tiendamusicalweb.controllers.loginController - INFO
+11:08:13.003 [http-nio-8080-exec-10] INFO  com.debpredator.tiendamusicalweb.controllers.HomeController - Home inicializado
+11:08:13.003 [http-nio-8080-exec-10] INFO  com.debpredator.tiendamusicalweb.controllers.HomeController - INFO
+11:08:13.003 [http-nio-8080-exec-10] ERROR com.debpredator.tiendamusicalweb.controllers.HomeController - ERROR
+11:08:13.004 [http-nio-8080-exec-10] WARN  com.debpredator.tiendamusicalweb.controllers.HomeController - WARN
+11:08:13.004 [http-nio-8080-exec-10] FATAL com.debpredator.tiendamusicalweb.controllers.HomeController - FALTAL
+11:08:15.197 [http-nio-8080-exec-1] INFO  com.debpredator.tiendamusicalweb.controllers.CarritoController - CarritoController - Calculando Total:1400.0
+11:08:19.055 [http-nio-8080-exec-3] INFO  com.debpredator.tiendamusicalweb.controllers.PasosController - iniciando controler pasos
+11:08:19.162 [http-nio-8080-exec-2] INFO  com.debpredator.tiendamusicalweb.controllers.CarritoController - CarritoController - Calculando Total:1400.0
+11:08:21.435 [http-nio-8080-exec-8] INFO  com.debpredator.tiendamusicalweb.paypal.PayPalServlet - Generando orden de PayPal 1
+11:08:21.565 [http-nio-8080-exec-8] INFO  com.debpredator.tiendamusicalweb.paypal.PayPalServlet - Generando orden de PayPal 2: 1400.0
+11:08:21.567 [http-nio-8080-exec-8] INFO  com.debpredator.tiendamusicalweb.paypal.PayPalCreateOrder - Ingresando a la funcion de crearOrden...
+11:08:21.857 [http-nio-8080-exec-8] INFO  com.debpredator.tiendamusicalweb.paypal.PayPalCreateOrder - [{"amountWithBreakdown":{"amountBreakdown":{"handling":{"currencyCode":"MXN","value":"10.0"},"itemTotal":{"currencyCode":"MXN","value":"1400.0"},"shipping":{"currencyCode":"MXN","value":"20.0"},"shippingDiscount":{"currencyCode":"MXN","value":"20.0"},"taxTotal":{"currencyCode":"MXN","value":"90.0"}},"currencyCode":"MXN","value":"1500.0"},"items":[{"category":"PHYSICAL_GOODS","description":"Es el tercer álbum de estudio de la banda británic","name":"The Number Of The Beast","quantity":"3","sku":"sku1","tax":{"currencyCode":"MXN","value":"10.0"},"unitAmount":{"currencyCode":"MXN","value":"200.0"}},{"category":"PHYSICAL_GOODS","description":"Es el tercer álbum de estudio de la banda de thras","name":"Master of Puppets","quantity":"4","sku":"sku1","tax":{"currencyCode":"MXN","value":"10.0"},"unitAmount":{"currencyCode":"MXN","value":"100.0"}},{"category":"PHYSICAL_GOODS","description":"Es el tercer álbum de estudio de la banda británic","name":"The Number Of The Beast","quantity":"1","sku":"sku1","tax":{"currencyCode":"MXN","value":"10.0"},"unitAmount":{"currencyCode":"MXN","value":"200.0"}},{"category":"PHYSICAL_GOODS","description":"Es el décimo álbum de estudio de la banda estadoun","name":"Hardwired...to Self-Destruct","quantity":"1","sku":"sku1","tax":{"currencyCode":"MXN","value":"10.0"},"unitAmount":{"currencyCode":"MXN","value":"200.0"}}],"shippingDetail":{"addressPortable":{"addressLine1":"MI CALLE 9","addressLine2":"MI COLONIA","adminArea1":"MÉXICO","adminArea2":"MONTERREY","countryCode":"MX","postalCode":"55555"},"name":{"fullName":"devpredator2 devpredator2 devpredator2"}}}]
+11:08:37.729 [http-nio-8080-exec-9] INFO  com.debpredator.tiendamusicalweb.controllers.PagoController - iniciando controler Pago
+11:08:37.731 [http-nio-8080-exec-9] INFO  com.debpredator.tiendamusicalweb.controllers.PagoController - iniciando guardar factura
+11:09:28.280 [main] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
