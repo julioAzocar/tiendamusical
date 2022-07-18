@@ -1,5 +1,8 @@
 package com.devpredator.tiendamusicalservices.service.impl;
 
+import java.time.LocalDateTime;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -7,6 +10,7 @@ import com.devpredator.tiendamusicaldata.dao.CarritoAlbumDAO;
 import com.devpredator.tiendamusicalentities.dto.ArtistaAlbumDTO;
 import com.devpredator.tiendamusicalentities.entities.Carrito;
 import com.devpredator.tiendamusicalentities.entities.CarritoAlbum;
+import com.devpredator.tiendamusicalentities.entities.Factura;
 import com.devpredator.tiendamusicalservices.service.CarritoService;
 
 
@@ -62,6 +66,32 @@ public class CarritoServiceImpl implements CarritoService {
 		return this.calcularTotal(carrito);
 		
 		
+	}
+
+	@Override
+	public boolean actualizarCarritoAlbum(List<CarritoAlbum> carritoAlbums, Factura factura) {
+		
+		boolean actualizados = false;
+		
+		//se actualiza el carrito pagado, se asigna fecha de compra y factura
+		for(CarritoAlbum carritoAlbum: carritoAlbums) {
+			carritoAlbum.setEstatus("PAGADO");
+			carritoAlbum.setFechaCompra(LocalDateTime.now());
+			carritoAlbum.setFactura(factura);
+		}
+		
+		Iterable<CarritoAlbum> carritosActualizados = this.carritoAlbumDAO.saveAll(carritoAlbums);
+		
+		if (carritosActualizados != null) {
+			
+			carritosActualizados.forEach(ca->{
+				ca.getAlbum();
+			});
+			
+			actualizados=true;
+		}
+		
+		return actualizados;
 	}
 
 

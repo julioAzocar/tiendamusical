@@ -12,7 +12,7 @@
    		<f:facet name="options">
    			<p:commandButton id="btnShopping" icon="pi pi-shopping-cart" 
    			action="#{navBarController.redireccionar}">
-   				<pe:badge content="#{sessionBean.persona.carrito.carritosAlbum.size()}" rendered="true"> </pe:badge>
+   				<pe:badge content="#{sessionBean.persona.carrito.carritosAlbum.size()}" rendered="#{sessionBean.persona.carrito.carritosAlbum.size() > 0}"> </pe:badge>
    			</p:commandButton>
    			<p:commandButton id="btnCerrarSesion" icon="pi pi-sign-in" action="#{sessionClosed.cerrarSesion}"></p:commandButton>
    		</f:facet>

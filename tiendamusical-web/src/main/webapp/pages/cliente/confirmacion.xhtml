@@ -10,40 +10,6 @@
 <h:head>
 	<ui:include src="/pages/commons/scripts.xhtml"></ui:include>
 
-
-	<script src="https://www.paypal.com/sdk/js?client-id=AZPg1T11HbYLBEu3cpdD50OQj1Q-ksfYh6eShueWbyF10EePrzX-wkwQZCvS16uFHGvAZUQoZhhVCE0F&amp;currency=MXN"></script>
-
-
-<!-- 
- 		 <script src="https://www.paypal.com/sdk/js?client-id=ATEir5IbJm02uOzMfNPZw48iYRuJsoScedFxjThUfQnB1eh5Soal3FAWUQsfFettOs11DDURnRxXiQBo&amp;currency=MXN"></script>
-		  -->
- 
-	<script>
-		paypal.Buttons({
-		createOrder: function(data, actions){
-			return fetch('../../PayPalServlet',{
-				method: 'post',
-				headers: {
-					'content-type':'application/json'
-				}
-				}).then(function(response){
-						var json = response.json();
-						console.log("RESPONSE " + json);
-						return json;
-				}).then(function(data){
-					
-					console.log("DATA " + data);
-					return data.result.id;
-				})
-			},
-			onApprove: function(data, actions){
-				return actions.order.capture().then(function(detalle){
-					//generar factura con orden de compra
-					finalizarTransaccion();
-				})
-			}
-		}).render('#divPayPalContainer');</script>
-	
 	<style>
 		body .ui-panelgrid .ui-panelgrid-cell {
 			border: 1px solid #c8c8c8;
@@ -62,7 +28,7 @@
 <h:body style="background-color:black;">
 
 	<div class="ui-fluid">
-		<h:form id="formPago">
+		<h:form id="formConfirmacion">
 
 			<ui:include src="/pages/commons/navbar.xhtml"></ui:include>
 
@@ -78,13 +44,17 @@
 						 <ui:include src="/pages/commons/steps.xhtml"></ui:include>
 
 							<div class="p-col" style="width: 90%;margin: 0px auto; text-align: center;">
-								<div id="divPayPalContainer" class="p-col" style="width: 100%; margin: 0px auto;">                            
-									<p:remoteCommand name="finalizarTransaccion" action="#{pagoController.guardarFactura}"></p:remoteCommand>
+								<p:panelGrid columns="1" columnClasses="ui-g-12 ui-md-12" 
+								layout="grid" styleClass="ui-panelgrid-blank ui-fluid"
+								style="text-align: center">
 								
-								</div>
+									<p:outputLabel id="lblCompraExitosa" value="¡Compra exitosa!" 
+									style="color:white;fornt-size:250%"></p:outputLabel>
+									
+									<p:graphicImage name="imagenes/ok.gif" width="25%"></p:graphicImage>
+								</p:panelGrid>
 							</div>
 							
-
 						</div>
 						<!-- fin p-col-12 -->
 					</div>

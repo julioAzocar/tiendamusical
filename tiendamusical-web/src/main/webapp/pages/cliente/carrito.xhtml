@@ -91,7 +91,7 @@ body .ui-panelgrid .ui-panelgrid-cell {
 										
 												<p:commandButton icon="pi pi-trash" style="background-color: red;border: none;" 
 												action="#{carritoController.eliminarAlbumCarrito(carritoAlbum)}" 
-													update="formCarrito:menubar,formCarrito:dataViewDetalleCarrito,formCarrito:pnlTotalCompra">
+													update="formCarrito:menubar,formCarrito:dataViewDetalleCarrito,formCarrito:pnlTotalCompra,formCarrito:pnlContinuar">
 													<p:confirm header="Confirmar" message="¿Estas seguro de eliminar el producto #{carritoAlbum.album.nombre}?" 
 													icon="pi pi-exclamation-triangle"/>
 												</p:commandButton>
@@ -129,7 +129,7 @@ body .ui-panelgrid .ui-panelgrid-cell {
 												
 								</h:panelGrid>
 								
-								<h:panelGrid  columns="5" 
+								<h:panelGrid  id="pnlContinuar" columns="5" 
 										columnClasses="ui-g-12 ui-md-2, ui-g-12 ui-md-4, ui-g-12 ui-md-2, ui-g-12 ui-md-2, 
 													ui-g-12 ui-md-2, logo, detail" layout="grid" 
 											style="width:100%;text-align:center;background-color:black;border:none;">

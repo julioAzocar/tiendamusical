@@ -38,12 +38,18 @@
 											<p:graphicImage
 												name="imagenes/albums/#{artistaAlbumDTO.album.imagen}"
 												style="width: 100%" height="200px" />
+												
 										</p:commandLink>
 										<h:outputText value="#{artistaAlbumDTO.artista.nombre}" style="color:white"></h:outputText>
 										<h:outputText value="#{artistaAlbumDTO.album.nombre}" style="color:white"></h:outputText>
 										<h:outputText value="#{artistaAlbumDTO.album.valor}" style="color:white">
 										<f:convertNumber type="currency" currencyCode="MXN" currencySymbol="$"></f:convertNumber>
 										</h:outputText>
+										
+										<p:commandButton url="#" icon="pi pi-shopping-cart" title="Shop"
+										action = "#{homeController.agregarAlbumCarrito(artistaAlbumDTO)}"
+										update="formDashboard:btnShopping"></p:commandButton>
+										                         
 									</h:panelGrid>
 				            	</p:panel>
 				            </p:dataViewGridItem>
@@ -70,7 +76,9 @@
 													<f:convertNumber type="currency" currencyCode="MXN" currencySymbol="$"></f:convertNumber>
 												</h:outputText>
 												
-												<p:commandButton url="#" icon="pi pi-shopping-cart" title="Shop"></p:commandButton>
+												<p:commandButton url="#" icon="pi pi-shopping-cart" title="Shop"
+												action = "#{homeController.agregarAlbumCarrito(artistaAlbumDTO)}"
+												update="formDashboard:btnShopping"></p:commandButton>
 											</h:panelGrid>
 										</p:outputPanel>
 									</h:panelGrid>

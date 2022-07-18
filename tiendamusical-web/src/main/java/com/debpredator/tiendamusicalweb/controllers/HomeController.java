@@ -15,6 +15,8 @@ import org.apache.logging.log4j.Logger;
 import com.debpredator.tiendamusicalweb.session.SessionBean;
 import com.debpredator.tiendamusicalweb.utils.CommonsUtils;
 import com.devpredator.tiendamusicalentities.dto.ArtistaAlbumDTO;
+import com.devpredator.tiendamusicalentities.entities.CarritoAlbum;
+import com.devpredator.tiendamusicalservices.service.CarritoService;
 import com.devpredator.tiendamusicalservices.service.HomeService;
 
 //controla flujo de informacion de pantalla de home
@@ -33,6 +35,10 @@ public class HomeController {
 	//obtiene logica de negocio de home
 	@ManagedProperty("#{homeServiceImpl}")
 	private HomeService homeServiceImpl;
+	
+	//obtiene logica de negocio de carrito
+	@ManagedProperty("#{carritoServiceImpl}")
+	private CarritoService carritoServiceImpl;
 	
 	//bean de sesion
 	@ManagedProperty("#{sessionBean}")
@@ -89,6 +95,19 @@ public class HomeController {
 		
 	}
 	
+
+	
+	//permite agregar 1 album en carrito
+	public void agregarAlbumCarrito(ArtistaAlbumDTO artistaAlbumDTO) {
+		LOGGER.info("Agregando album : " +  artistaAlbumDTO.getAlbum().getNombre());
+		
+		CarritoAlbum carritoAlbum = this.carritoServiceImpl.guardarAlbumsCarrito(artistaAlbumDTO, this.sessionBean.getPersona().getCarrito(), 1);
+		
+		this.sessionBean.getPersona().getCarrito().getCarritosAlbum().add(carritoAlbum);
+		
+		
+	}
+	
 	public String getFiltro() {
 		return filtro;
 	}
@@ -111,6 +130,14 @@ public class HomeController {
 
 	public void setHomeServiceImpl(HomeService homeServiceImpl) {
 		this.homeServiceImpl = homeServiceImpl;
+	}
+
+	public CarritoService getCarritoServiceImpl() {
+		return carritoServiceImpl;
+	}
+
+	public void setCarritoServiceImpl(CarritoService carritoServiceImpl) {
+		this.carritoServiceImpl = carritoServiceImpl;
 	}
 	
 	
