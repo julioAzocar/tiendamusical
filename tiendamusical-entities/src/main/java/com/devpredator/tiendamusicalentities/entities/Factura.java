@@ -37,6 +37,33 @@ public class Factura  extends Common{
 	@Column(name="handling", nullable=false)
 	private Double handling;
 	
+	@Column(name="total", nullable=false)
+	private Double total;
+	
+	@Column(name="direccion", length = 500, nullable=false)
+	private String direccion;
+	
+	@Column(name="codigoPostal", length = 5, nullable=false)
+	private String codigoPostal;
+	
+	@Column(name="pais", length = 45, nullable=false)
+	private String pais;
+	
+	@Column(name="ciudad", length = 45, nullable=false)
+	private String ciudad;
+	
+	@Column(name="divisa", length = 45, nullable=false)
+	private String divisa;
+	
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "idPersona")
+	private Persona persona;
+	
+	@OneToMany(mappedBy = "factura", fetch=FetchType.EAGER)
+	private List<CarritoAlbum>carritosAlbum;
+	
+	
 	public long getIdFactura() {
 		return idFactura;
 	}
@@ -148,31 +175,5 @@ public class Factura  extends Common{
 	public void setCarritosAlbum(List<CarritoAlbum> carritosAlbum) {
 		this.carritosAlbum = carritosAlbum;
 	}
-
-	@Column(name="total", nullable=false)
-	private Double total;
-	
-	@Column(name="direccion", length = 500, nullable=false)
-	private String direccion;
-	
-	@Column(name="codigoPostal", length = 5, nullable=false)
-	private String codigoPostal;
-	
-	@Column(name="pais", length = 45, nullable=false)
-	private String pais;
-	
-	@Column(name="ciudad", length = 45, nullable=false)
-	private String ciudad;
-	
-	@Column(name="divisa", length = 45, nullable=false)
-	private String divisa;
-	
-	
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "idPersona")
-	private Persona persona;
-	
-	@OneToMany(mappedBy = "factura")
-	private List<CarritoAlbum>carritosAlbum;
 	
 }

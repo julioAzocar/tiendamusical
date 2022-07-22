@@ -1,5 +1,7 @@
 package com.debpredator.tiendamusicalweb.session;
 
+import java.io.Serializable;
+
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;

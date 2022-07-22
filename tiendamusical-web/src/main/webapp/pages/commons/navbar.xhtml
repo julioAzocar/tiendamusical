@@ -7,16 +7,19 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
        xmlns:pe="http://primefaces.org/ui/extensions"> <!-- permite incluir contenido de otras pantallas para usar scripts.xhtml-->
 
+<!-- immediate="true" sirbe para que en pagina de guardar persona no valide estos botones y funcionen -->
 
    <p:menubar id="menubar" style="background-color: black;padding:5px;">
    		<f:facet name="options">
-   			<p:commandButton id="btnShopping" icon="pi pi-shopping-cart" 
+   			<p:commandButton id="btnShopping" icon="pi pi-shopping-cart" immediate="true"
    			action="#{navBarController.redireccionar}">
    				<pe:badge content="#{sessionBean.persona.carrito.carritosAlbum.size()}" rendered="#{sessionBean.persona.carrito.carritosAlbum.size() > 0}"> </pe:badge>
    			</p:commandButton>
-   			<p:commandButton id="btnCerrarSesion" icon="pi pi-sign-in" action="#{sessionClosed.cerrarSesion}"></p:commandButton>
+   			<p:commandButton id="btnCerrarSesion" icon="pi pi-sign-in" action="#{sessionClosed.cerrarSesion}" immediate="true"></p:commandButton>
    		</f:facet>
    </p:menubar>
    <!-- mantiene barra siempre visible -->
 	<p:sticky target="menubar"></p:sticky>
+
+
 </ui:composition>

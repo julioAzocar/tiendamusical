@@ -1,0 +1,99 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<!-- permite incluir contenido de otras pantallas para usar scripts.xhtml-->
+
+<h:head>
+	<ui:include src="/pages/commons/scripts.xhtml"></ui:include>
+
+	<style>
+body .ui-panelgrid .ui-panelgrid-cell {
+	border: 1px solid #c8c8c8;
+	background-color: rgb(0 0 0/ 80%);
+	color: #333;
+	padding: 0.571em 1em;
+}
+</style>
+</h:head>
+
+<h:body style="background-color:black;">
+
+
+	<div class="ui-fluid">
+		<h:form id="formInfoPersonal">
+
+			<p:growl id="messages" showSummary="true" showDetail="true" skipDetailIfEqualsSummary="true"/> 
+
+			<ui:include src="/pages/commons/navbar.xhtml"></ui:include>
+
+			<div class="p-grid sample-layout">
+
+				<ui:include src="/pages/commons/header.xhtml"></ui:include>
+
+
+
+
+				<div class="p-col-12 p-md-10 p-col-nogutter" style="background-color: black">
+					<div class="p-grid">
+						<div class="p-col-10" style="margin: 0px auto">
+						
+							<p:outputLabel value="Mis Información Personal" style="color: white;font-size:100%"></p:outputLabel>
+						
+							<p:separator></p:separator>
+						
+							<p:panelGrid columns="2" columnClasses="ui-g-2 ui-md-2,ui-g-10 ui-md-10" layout="grid" styleClass="ui-panelgrid-blank ui-fluid">                                   
+							
+								<p:graphicImage name="imagenes/albums/am.png"	style="width: 100%" />
+							
+								<p:panel id="pnlInfoPersonal" header="Informacion Personal" style="background-color: black; border: none;">
+									<p:panelGrid id="pgInfoPersonal" columns="4" layout="grid" styleClass="ui-panelgrid-blank ui-fluid" 
+										columnClass="ui-g-12 ui-md-2,ui-g-12 ui-md-4,ui-g-12 ui-md-2,ui-g-12 ui-md-2" >  
+										                                 
+											<p:outputLabel value="Nombre" style="color:white;" for="txtNombre"></p:outputLabel>
+											<p:inputText id="txtNombre" value="#{sessionBean.persona.nombre}" required="true" requiredMessage="El Nombre es requerido"></p:inputText>
+											
+											<p:outputLabel value="Primer Apellido" style="color:white;" for="txtPrimerApellido"></p:outputLabel>
+											<p:inputText id="txtPrimerApellido" value="#{sessionBean.persona.primerApellido}" required="true" requiredMessage="El Primer Apellido es requerido"></p:inputText>
+											
+											<p:outputLabel value="Segundo Apellido" style="color:white;" for="txtSegundoApellido"></p:outputLabel>
+											<p:inputText id="txtSegundoApellido" value="#{sessionBean.persona.segundoApellido}" required="true" requiredMessage="El Segundo Apellido es requerido"></p:inputText>
+											
+											<p:outputLabel value="Usuario" style="color:white;" for="txtUsuario"></p:outputLabel>
+											<p:inputText id="txtUsuario" value="#{sessionBean.persona.usuario}" required="true" requiredMessage="El Usuario es requerido"></p:inputText>
+											
+											<p:outputLabel value="Contraseña" style="color:white;" for="txtPassword"></p:outputLabel>
+											<p:password id="txtPassword" value="#{sessionBean.persona.password}" required="true" requiredMessage="La Contraseña es requerida"></p:password>
+											
+											
+									</p:panelGrid>
+								</p:panel>
+							
+							</p:panelGrid>
+							
+							<p:panelGrid columns="2" columnClasses="ui-g-6 ui-md-9,ui-g-6 ui-md-3" layout="grid" styleClass="ui-panelgrid-blank ui-fluid"> 
+								<p:outputLabel></p:outputLabel>
+								<p:commandButton value="Guardar" action="#{infoPersonalController.actualizarPersona}" update="pnlInfoPersonal, messages"></p:commandButton>
+							</p:panelGrid>
+							
+							
+						</div>
+					</div>
+				</div>
+
+
+
+				<ui:include src="/pages/commons/footer.xhtml"></ui:include>
+
+
+			</div>
+		</h:form>
+	
+	
+	
+	</div>
+
+</h:body>
+
+</html>

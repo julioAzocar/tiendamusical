@@ -1,0 +1,143 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<!-- permite incluir contenido de otras pantallas para usar scripts.xhtml-->
+
+<h:head>
+	<ui:include src="/pages/commons/scripts.xhtml"></ui:include>
+
+	<style>
+body .ui-panelgrid .ui-panelgrid-cell {
+	border: 1px solid #c8c8c8;
+	background-color: rgb(0 0 0/ 80%);
+	color: #333;
+	padding: 0.571em 1em;
+}
+</style>
+</h:head>
+
+<h:body style="background-color:black;">
+
+
+	<div class="ui-fluid">
+		<h:form id="formMisCompras">
+
+			<ui:include src="/pages/commons/navbar.xhtml"></ui:include>
+
+			<div class="p-grid sample-layout">
+
+				<ui:include src="/pages/commons/header.xhtml"></ui:include>
+
+				<div class="p-col-12 p-md-10 p-col-nogutter"
+					style="background-color: black">
+					<div class="p-grid">
+						<div class="p-col-10" style="margin: 0px auto">
+						
+						<p:outputLabel value="Mis Compras" style="color: white;font-size:100%"></p:outputLabel>
+						
+						<p:separator></p:separator>
+						
+							<p:dataTable id="tblMisCompras" var="factura" value="#{misComprasController.facturas}" rows="10"
+								paginator="true" rowsPerPageTemplate="10,30,50" reflow="true"
+								paginatorPosition="bottom"
+								paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+								
+								<f:facet name="header"> Compras Realizadas	</f:facet>
+								
+								<p:column headerText="# Orden">
+									<p:outputLabel value="#{factura.orderId}"></p:outputLabel>
+								</p:column>
+
+								<p:column headerText="# Impuesto">
+									<p:outputLabel value="#{factura.impuestoTotal}">
+										<f:convertNumber type="currency" currencyCode="CLP" currencySymbol="$"> </f:convertNumber>
+									</p:outputLabel>
+								</p:column>
+
+								<p:column headerText="# Total">
+									<p:outputLabel value="#{factura.total}">
+										<f:convertNumber type="currency" currencyCode="CLP" currencySymbol="$"> </f:convertNumber>
+									</p:outputLabel>
+								</p:column>
+
+								<p:column headerText="Ver Detalle">
+									<p:commandButton icon="pi pi-search" action="#{misComprasController.mostrarDetalle(factura.carritosAlbum)}" 
+									update="formMisCompras:opDetalleCompra"></p:commandButton>
+								</p:column>
+
+							</p:dataTable>
+
+							<p:outputPanel  id="opDetalleCompra" style="text-align:center">
+
+							<p:outputLabel rendered="#{not empty misComprasController.carritosAlbum}" value="Detalle de compra" style="color: white;font-size:100%"></p:outputLabel>
+							
+							<p:separator rendered="#{not empty misComprasController.carritosAlbum}"></p:separator>
+						
+								<p:dataView id="dataViewDetalleCompra" var="carritoAlbum"
+									value="#{misComprasController.carritosAlbum}"
+									listIcon="pi pi-bars"
+									style="width:100%;margin:0px auto;background-color:black;"
+									rendered="#{not empty misComprasController.carritosAlbum}"
+									rows="10" paginator="true"
+									rowsPerPageTemplate="10,30,50" paginatorPosition="bottom"
+									paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+
+
+									<p:dataViewListItem style="background-color:black;">
+										<h:panelGrid columns="5" style="width:100%;text-align:center;background-color:black;border:none;" 
+										columnClasses="ui-g-12 ui-md-2,ui-g-12 ui-md-5,ui-g-12 ui-md-3,logo,detail">
+
+											<p:graphicImage name="imagenes/albums/#{carritoAlbum.album.imagen}"	style="width: 100%" />
+
+											<p:outputPanel>
+												<h:panelGrid columns="2" cellPadding="5">
+
+													<h:outputText value="Artista" style="color:white;" />
+													<h:outputText value="#{carritoAlbum.album.artista.nombre}" style="color:white;" />
+
+													<h:outputText value="Tiulo" style="color:white;" />
+													<h:outputText value="#{carritoAlbum.album.nombre}" style="color:white;" />
+
+													<h:outputText value="Precio" style="color:white;" />
+													<p:outputLabel value="#{carritoAlbum.album.valor}" style="color:white;">
+														<f:convertNumber type="currency" currencyCode="CLP" currencySymbol="$"></f:convertNumber>
+													</p:outputLabel>
+
+												</h:panelGrid>
+											</p:outputPanel>
+											
+											<p:outputPanel>
+												<h:panelGrid columns="2" cellPadding="5">
+													<h:outputLabel for="txtCant" value="Cantidad" style="color:white;" />
+													<h:outputText id="txtCant" value="#{carritoAlbum.cantidad}" style="color:white;" />
+														
+													<h:outputLabel for="txtTotal" value="Total" style="color:white;" />
+													<h:outputText id="txtTotal" value="#{carritoAlbum.cantidad * carritoAlbum.album.valor}" style="color:white;">
+														<f:convertNumber type="currency" currencyCode="CLP" currencySymbol="$"></f:convertNumber>
+													</h:outputText>
+												</h:panelGrid>
+											</p:outputPanel>
+													
+										</h:panelGrid>
+									</p:dataViewListItem>
+
+								</p:dataView>
+
+
+
+							</p:outputPanel>
+						</div>
+					</div>
+				</div>
+
+				<ui:include src="/pages/commons/footer.xhtml"></ui:include>
+
+			</div>
+		</h:form>
+	</div>
+
+</h:body>
+
+</html>

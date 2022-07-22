@@ -4,6 +4,7 @@
 package com.debpredator.tiendamusicalweb.controllers;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.List;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
@@ -31,7 +32,15 @@ import com.devpredator.tiendamusicalservices.service.LoginService;
 
 @ManagedBean//javax.faces.bean.ManagedBean;
 @ViewScoped //javax.faces.bean.ViewScoped;
-public class loginController {
+public class loginController implements Serializable {
+	/**
+	 * agregar implements Serializable de,  import java.io.Serializable;
+	 * add generate serial version id->hover en loginController eleigir opcion
+	 * genera una instancia de sesion por cada usuario
+	 */
+	private static final long serialVersionUID = -6832572449982879476L;
+	
+	
 	private String usuario; //usuario de persona
 	private String password;//contraseña de persona 
 	

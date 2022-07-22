@@ -5,14 +5,15 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://java.sun.com/jsf/facelets"> <!-- permite incluir contenido de otras pantallas para usar scripts.xhtml-->
 
+<!-- immediate="true" sirbe para que en pagina de guardar persona no valide estos botones y funcionen -->
 
-        <p:panelMenu style="width:100%">
+        <p:panelMenu style="width:100%" >
             <p:submenu label="Mi Perfil" rendered="true" expanded="true">
-                <p:menuitem value="Informacion General" icon="pi pi-user-edit"/>
-                <p:menuitem value="Mis Compras"  icon="pi pi-shopping-cart"/>
+                <p:menuitem immediate="true" value="Informacion General" icon="pi pi-user-edit" action="#{paginaController.irPagina('/pages/cliente/infopersonal.xhtml')}"/>
+                <p:menuitem immediate="true" value="Mis Compras"  icon="pi pi-shopping-cart" action="#{paginaController.irPagina('/pages/cliente/miscompras.xhtml')}"/>
             </p:submenu>
             <p:submenu label="Administracion" rendered="false">
-                <p:menuitem value="Website"  icon="pi pi-external-link"/>
+                <p:menuitem immediate="true" value="Website"  icon="pi pi-external-link"/>
             </p:submenu>
         </p:panelMenu>
         
