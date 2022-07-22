@@ -90,15 +90,17 @@ public class loginController implements Serializable {
 		try {
 			Persona personaConsultada = this.loginServiceImpl.consultarUsuarioLogin(this.usuario, this.password);
 
-			  List<CarritoAlbum> carritoAlbumFiltrados = personaConsultada.getCarrito().getCarritosAlbum().stream().filter(ca ->
-				ca.getEstatus().equals("PENDIENTE")).collect(Collectors.toList());
-			
-			  //solo carritos pendientes
-			  personaConsultada.getCarrito().setCarritosAlbum(carritoAlbumFiltrados);
-			  
-			  LOGGER.info("INFO");
-			  
 			if (personaConsultada != null) {
+				
+				if (personaConsultada.getRol().getIdRol() == 4) {
+					  List<CarritoAlbum> carritoAlbumFiltrados = personaConsultada.getCarrito().getCarritosAlbum().stream().filter(ca ->
+						ca.getEstatus().equals("PENDIENTE")).collect(Collectors.toList());
+					
+					  //solo carritos pendientes
+					  personaConsultada.getCarrito().setCarritosAlbum(carritoAlbumFiltrados);
+					  
+					  LOGGER.info("INFO");
+				}
 
 				this.sessionBean.setPersona(personaConsultada);// sesion persona logueada
 
