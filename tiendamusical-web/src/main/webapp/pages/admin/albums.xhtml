@@ -12,6 +12,12 @@
 <h:head>
 	<ui:include src="/pages/commons/scripts.xhtml"></ui:include>
 
+	<script>
+	    function updateCount() {
+	        $("[id$='counter']").html($("[id$='txtDescripcion']").val().length + "/" + $("[id$='txtDescripcion']").attr('maxlength') + " characters used");
+	    }
+	</script>
+
 	<style>
 
 		body .ui-panelgrid .ui-panelgrid-cell {
@@ -130,7 +136,7 @@
 							</p:dataTable>
 
 							
-								<p:dialog  class="dialogCentro" header="Editar Albums" widgetVar="dlgAlbums" modal="true" responsive="true" resizable="false" width="80%" height="500px" style="background-color: black">
+								<p:dialog id="dlgAlbum" class="dialogCentro" header="Editar Albums" widgetVar="dlgAlbums" modal="true" responsive="true" resizable="false" width="80%" height="500px" style="background-color: black">
 									
 												<!-- panelGrid -->
 															<!--    col1                    col2                     -->
@@ -143,13 +149,19 @@
 										
 								
 										<p:outputLabel id="lblImagen" value="Imagen: " style="color:white;"></p:outputLabel>
+   										<p:fileUpload listener="#{adminAlbumsController.handleFileUpload}" mode="advanced" auto="true" sizeLimit="100000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" update="pnlTextImage" immediate="true"/>
+										
+										<p:outputLabel value=""></p:outputLabel>
+										<p:outputPanel id="pnlTextImage">
+											<p:outputLabel id="lblTextImage" value="Imagen Cargada: #{adminAlbumsController.uploadedFile.fileName}" rendered="#{adminAlbumsController.uploadedFile != null}" style="color:white;"></p:outputLabel>
+										</p:outputPanel>
 
-   										<p:fileUpload listener="#{adminAlbumsController.handleFileUpload}" mode="advanced" update="messages" auto="true" sizeLimit="100000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/>
-
-
-		        
-										<p:growl id="xmessages" showDetail="true"/>
-
+										<p:outputLabel id="lblDescripcion" value="Descripcion: " for="txtDescripcion" style="color:white;"></p:outputLabel>
+										<p:inputTextarea id="txtDescripcion" value="#{adminAlbumsController.album.descripcion}" rows="5" maxlength="200" onfocus="updateCount()" onkeyup="updateCount()"></p:inputTextarea>
+										
+										<p:outputLabel value=""></p:outputLabel>
+										<div id="counter" style="color:white;"/>
+										
 										<p:outputLabel id="lblAnio" value="Años " for="txtAnio" style="color:white;"></p:outputLabel>
 										<p:inputText id="txtAnio" required="true" requiredMessage="Año es requerido" value="#{adminAlbumsController.album.anio}"></p:inputText>
 										
@@ -185,6 +197,8 @@
 										<p:commandButton value="Guardar" update="messages, pblAlbums, tblAlbums" style="background-color: green" action="#{adminAlbumsController.guardar}"></p:commandButton>
 										<p:commandButton value="Cancelar" style="background-color: red"></p:commandButton>				        		        
 									</p:panelGrid>
+									
+									<p:ajax event="close" update="dlgAlbum" resetValues="true"></p:ajax>
 								</p:dialog>
 							
 								

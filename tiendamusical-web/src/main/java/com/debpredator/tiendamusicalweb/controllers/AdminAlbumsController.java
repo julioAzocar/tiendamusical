@@ -94,7 +94,7 @@ public class AdminAlbumsController {
 		this.album = new Album();
 		this.album.setDisquera(new Disquera());
 		this.album.setArtista(new Artista());
-		
+		this.uploadedFile = null;
 	}
 	public void consultar() {
 		this.albums = this.albumServiceImpl.consultarAlbums();
@@ -107,6 +107,9 @@ public class AdminAlbumsController {
 		
 		try {
 			this.inputStream = fileUploadEvent.getFile().getInputStream();
+			
+			CommonsUtils.mostrarMensaje(FacesMessage.SEVERITY_INFO, "OK!", "Imagen recibida: " + uploadedFile.getFileName());
+			
 		} catch (IOException e) {
 			CommonsUtils.mostrarMensaje(FacesMessage.SEVERITY_ERROR, "ERROR!", "Error en cargar archivo de imagen de album");
 			
@@ -130,7 +133,6 @@ public class AdminAlbumsController {
 	//guarda album
 	public void guardar() {
 		
-		
 		try {
 			CommonsUtils.guardarImagen(this.absolutePath, this.uploadedFile.getFileName(), this.inputStream);
 		} catch (IOException e) {
@@ -141,7 +143,6 @@ public class AdminAlbumsController {
 		
 		this.album.setImagen(this.uploadedFile.getFileName());
 
-		
 		Album albumGuardado = this.adminAlbumsServiceImpl.guardarAlbum(this.album);
 		
 		if (albumGuardado.getIdAlbum() != null) {
@@ -151,6 +152,7 @@ public class AdminAlbumsController {
 			PrimeFaces.current().executeScript("PF('dlgAlbums').hide()");
 			
 			this.consultar();
+			this.limpiarComponentes();
 		}
 	}
 	
