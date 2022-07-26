@@ -1,0 +1,203 @@
+
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<!-- permite incluir contenido de otras pantallas para usar scripts.xhtml-->
+
+
+
+<h:head>
+	<ui:include src="/pages/commons/scripts.xhtml"></ui:include>
+
+	<style>
+
+		body .ui-panelgrid .ui-panelgrid-cell {
+		    border: 1px solid #c8c8c8;
+		    background-color: rgb(0 0 0 / 80%);
+		    color: #333;
+		    padding: 0.571em 1em;
+		}
+		/*editar modal*/
+		body .ui-dialog .ui-dialog-content {
+		    background-color: black;
+		    color: #333;
+		    border: 1px solid #c8c8c8;
+		    padding: 0.571em 1em;
+		    line-height: 1.5;
+		    -webkit-box-sizing: content-box;
+		    -moz-box-sizing: content-box;
+		    box-sizing: content-box;
+		}
+		.dialogCentro{
+			top:1% !important;
+		}
+	</style>
+</h:head>
+
+<h:body style="background-color:black;">
+
+
+	<div class="ui-fluid">
+
+						
+		<h:form id="formAlbums">
+
+			<p:growl id="messages" showSummary="true" showDetail="true" skipDetailIfEqualsSummary="true" ></p:growl>
+
+
+			<ui:include src="/pages/commons/navbar.xhtml"></ui:include>
+
+			<div class="p-grid sample-layout">
+
+				<ui:include src="/pages/commons/header.xhtml"></ui:include>
+
+				<div class="p-col-12 p-md-10 p-col-nogutter" style="background-color: black">
+					<div class="p-grid">
+					
+					<div class="p-col-2" style="margin: 0px auto">
+				
+
+
+						<p:commandButton value="Agregar" icon="pi pi-pencil" 
+							oncomplete="PF('dlgAlbums').show()" style="background-color: green"
+							action="#{adminAlbumsController.limpiarComponentes}"
+							inmediate="true" update="formAlbums:pblAlbums"></p:commandButton>
+										        
+					</div>
+					
+						<div class="p-col-12" style="margin: 0px auto">
+															<!-- panelGrid -->
+															<!--    col1                    col2                     -->
+															<!--    g pant chica, md pant mediana , lg pant grande   -->	
+															<!--    picture 4 col de 12, detalle 8 col de 12   -->	
+
+							<!--  var="factura" value="#{misComprasController.facturas}"  -->
+							
+
+							
+							<p:dataTable id="tblAlbums" 
+								var="album" value="#{adminAlbumsController.albums}" rows="10"
+								filteredValue="#{adminAlbumsController.albumsFiltrados}"
+								paginator="true" rowsPerPageTemplate="10,30,50" reflow="true"
+								paginatorPosition="bottom"
+								paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+								
+								<f:facet name="header">Listado de Albums</f:facet>
+								
+								<p:column headerText="Imagen">
+										<p:graphicImage	name="imagenes/albums/#{album.imagen}" style="width: 80%" />
+										
+								</p:column>
+								
+								<p:column headerText="Nombre" filterBy="#{album.nombre}" filterMatchMode="contains">
+									<p:outputLabel value="#{album.nombre}"></p:outputLabel>
+								</p:column>
+
+								<p:column headerText="Artista" filterBy="#{album.nombre}" filterMatchMode="contains">
+									<p:outputLabel value="album.artista.nombre"></p:outputLabel>
+								</p:column>
+								
+								<p:column headerText="Año" filterBy="#{album.anio}" filterMatchMode="contains">
+									<p:outputLabel value="#{album.anio}"></p:outputLabel>
+								</p:column>
+								
+								<p:column headerText="Formato" filterBy="#{album.formato}" filterMatchMode="contains">
+									<p:outputLabel value="#{album.formato}"></p:outputLabel>
+								</p:column>
+								
+								<p:column headerText="Precio" filterBy="#{album.valor}" filterMatchMode="contains">
+									<p:outputLabel value="#{album.valor}">
+										<f:convertNumber type="currency" currencyCode="CLP" currencySymbol="$"> </f:convertNumber>
+									</p:outputLabel>
+								</p:column>
+								
+								<p:column headerText="Disquera" filterBy="#{album.descripcion}" filterMatchMode="contains">
+									<p:outputLabel value="#{album.disquera.descripcion}"></p:outputLabel>
+								</p:column>
+								
+								<p:column headerText="Estatus" filterBy="#{album.estatus}" filterMatchMode="contains">
+									<p:outputLabel value="HABILITADO" rendered="#{album.estatus}"></p:outputLabel>
+									<p:outputLabel value="NO HABILITADO" rendered="#{!album.estatus}"></p:outputLabel>
+								</p:column>
+								
+								<p:column headerText="Actualizar">
+									<p:commandButton icon="pi pi-pencil" style="background-color: green"></p:commandButton>
+								</p:column>
+								
+							</p:dataTable>
+
+							
+								<p:dialog  class="dialogCentro" header="Editar Albums" widgetVar="dlgAlbums" modal="true" responsive="true" resizable="false" width="80%" height="500px" style="background-color: black">
+									
+												<!-- panelGrid -->
+															<!--    col1                    col2                     -->
+															<!--    g pant chica, md pant mediana , lg pant grande   -->	
+															<!--    picture 4 col de 12, detalle 8 col de 12   -->	
+									<p:panelGrid id="pblAlbums" columns="2" layout="grid" styleClass="ui-panelgrid-blank" columnClasses="ui-g-12 ui-md-4 ui-lg-4,ui-g-12 ui-md-8 ui-lg-8"  style="background-color: black">
+										
+										<p:outputLabel id="lblNombre" value="Nombre: " for="txtNombre"  style="color:white;"></p:outputLabel>
+										<p:inputText id="txtNombre" required="true" requiredMessage="Nombre es requerido" value="#{adminAlbumsController.album.nombre}"></p:inputText>
+										
+								
+										<p:outputLabel id="lblImagen" value="Imagen: " style="color:white;"></p:outputLabel>
+
+   										<p:fileUpload listener="#{adminAlbumsController.handleFileUpload}" mode="advanced" update="messages" auto="true" sizeLimit="100000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/>
+
+
+		        
+										<p:growl id="xmessages" showDetail="true"/>
+
+										<p:outputLabel id="lblAnio" value="Años " for="txtAnio" style="color:white;"></p:outputLabel>
+										<p:inputText id="txtAnio" required="true" requiredMessage="Año es requerido" value="#{adminAlbumsController.album.anio}"></p:inputText>
+										
+										<p:outputLabel id="lblFormatoAlbum" value="Formato: " for="txtFormatoAlbu" style="color:white;"></p:outputLabel>
+										<p:inputText id="txtFormatoAlbu" required="true" requiredMessage="Formato es requerido" value="#{adminAlbumsController.album.formato}"></p:inputText>
+										
+										<p:outputLabel id="lblPrecioAlbum" value="Precio: " for="txtPrecio" style="color:white;"></p:outputLabel>
+										<p:inputText id="txtPrecio" required="true" requiredMessage="Precio es requerido" value="#{adminAlbumsController.album.valor}"></p:inputText>
+										
+										<p:outputLabel id="lblDisquera" value="Disquera " for="cboDisquera" style="color:white;"></p:outputLabel>
+										<p:selectOneMenu id="cboDisquera" required="true" requiredMessage="Disquera es requerido" value="#{adminAlbumsController.album.disquera.idDisquera}">
+											<f:selectItem itemValue="" itemLabel="Selecciones"></f:selectItem>
+											<f:selectItems var="disquera" value="#{adminAlbumsController.disqueras}" itemValue="#{disquera.idDisquera}" itemLabel="#{disquera.descripcion}" ></f:selectItems>
+										</p:selectOneMenu>
+										
+										<p:outputLabel id="lblArtista" value="Artista: " for="cboArtista" style="color:white;"></p:outputLabel>
+										<p:selectOneMenu id="cboArtista" required="true" requiredMessage="Artista es requerido" value="#{adminAlbumsController.album.artista.idArtista}">
+											<f:selectItem itemValue="" itemLabel="Selecciones"></f:selectItem>
+											<f:selectItems var="artista" value="#{adminAlbumsController.artistas}" itemValue="#{artista.idArtista}" itemLabel="#{artista.nombre}" ></f:selectItems>
+										</p:selectOneMenu>
+										
+										<p:outputLabel id="lblEstatus1" value="" rendered="false" style="color:white;"></p:outputLabel>
+										<p:inputSwitch id="lblEstatus2" value="#{adminAlbumsController.album.estatus}" rendered="false" style="color:white;"></p:inputSwitch>
+										
+									</p:panelGrid>
+									
+												<!-- panelGrid -->
+															<!--    col1                    col2                     -->
+															<!--    g pant chica, md pant mediana , lg pant grande   -->	
+															<!--    picture 4 col de 12, detalle 8 col de 12   -->	
+															
+									<p:panelGrid columns="2" layout="grid" styleClass="ui-panelgrid-blank" columnClasses="ui-g-6, ui-g-6">
+										<p:commandButton value="Guardar" update="messages, pblAlbums, tblAlbums" style="background-color: green" action="#{adminAlbumsController.guardar}"></p:commandButton>
+										<p:commandButton value="Cancelar" style="background-color: red"></p:commandButton>				        		        
+									</p:panelGrid>
+								</p:dialog>
+							
+								
+						</div>
+					</div>
+				</div>
+
+				<ui:include src="/pages/commons/footer.xhtml"></ui:include>
+
+			</div>
+		</h:form>
+	</div>
+
+</h:body>
+
+</html>

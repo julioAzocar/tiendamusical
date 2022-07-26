@@ -1,6 +1,10 @@
 package com.debpredator.tiendamusicalweb.utils;
 
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.application.FacesMessage.Severity;
@@ -37,5 +41,10 @@ public class CommonsUtils {
 		
 	}
 	
-	
+	//permite guardar imagenes en directorio
+	public static void guardarImagen(String path, String nombreArchivo, InputStream inputStream) throws IOException {
+		
+		Files.copy(inputStream, new File(path, nombreArchivo).toPath(), StandardCopyOption.REPLACE_EXISTING);
+		
+	}
 }

@@ -22,10 +22,10 @@ public class Album extends Common{
 	@Column(name="nombre", length = 100,nullable = false)
 	private String nombre;
 	
-	@Column(name="imagen", length = 100,nullable = false)
+	@Column(name="imagen", length = 100,nullable = true)
 	private String imagen;
 	
-	@Column(name="descripcion",nullable = false)
+	@Column(name="descripcion",nullable = true)
 	private String descripcion;
 	
 	@Column(name="anio",nullable = false)

@@ -19,7 +19,7 @@
                 action="#{paginaController.irPagina('/pages/cliente/miscompras.xhtml')}" 
                 rendered="#{sessionBean.persona.rol.idRol == 4}"/>
                 	
-                <p:menuitem immediate="true" value="Albums"  icon="pi pi-spinner" rendered="#{sessionBean.persona.rol.idRol == 3}"/>
+                <p:menuitem immediate="true" value="Albums"  icon="pi pi-spinner" action="#{paginaController.irPagina('/pages/admin/albums.xhtml')}" rendered="#{sessionBean.persona.rol.idRol == 3}"/>
                 <p:menuitem immediate="true" value="Artistas"  icon="pi pi-users" rendered="#{sessionBean.persona.rol.idRol == 3}"/>
                 <p:menuitem immediate="true" value="Perfiles"  icon="pi pi-lock" rendered="#{sessionBean.persona.rol.idRol == 3}"/>
                   

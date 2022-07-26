@@ -246,6 +246,7 @@ public class HomeController {
 
 	public void setCarritoServiceImpl(CarritoService carritoServiceImpl) {
 		this.carritoServiceImpl = carritoServiceImpl;
+		
 	}
 
 	public BarChartModel getBarChartModel() {
