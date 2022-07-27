@@ -58,16 +58,10 @@ public class AdminAlbumsController {
 	//onjeto para almacenar archivo imagen de album a cargar de forma temporal
 	private UploadedFile uploadedFile;
 	private InputStream inputStream;
-	
-	public UploadedFile getUploadedFile() {
-		return uploadedFile;
-	}
-
-	public void setUploadedFile(UploadedFile uploadedFile) {
-		this.uploadedFile = uploadedFile;
-	}
-
 	String absolutePath = null;
+
+
+	
 	
 	@PostConstruct
 	public void init() {
@@ -166,7 +160,13 @@ public class AdminAlbumsController {
 
 	}
 	
-	
+	public UploadedFile getUploadedFile() {
+		return uploadedFile;
+	}
+
+	public void setUploadedFile(UploadedFile uploadedFile) {
+		this.uploadedFile = uploadedFile;
+	}
 	public SessionBean getSessionBean() {
 		return sessionBean;
 	}

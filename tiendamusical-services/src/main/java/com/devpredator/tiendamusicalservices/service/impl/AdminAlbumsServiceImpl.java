@@ -55,7 +55,6 @@ public class AdminAlbumsServiceImpl implements AdminAlbumsService {
 			album.setEstatus(true);
 		}
 
-		
 		return this.albumDAO.save(album);
 	}
 
