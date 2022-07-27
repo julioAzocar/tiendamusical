@@ -70,7 +70,7 @@
 						<p:commandButton value="Agregar" icon="pi pi-pencil" 
 							oncomplete="PF('dlgAlbums').show()" style="background-color: green"
 							action="#{adminAlbumsController.limpiarComponentes}"
-							inmediate="true" update="formAlbums:pblAlbums"></p:commandButton>
+							inmediate="true" update="formAddUpdateAlbum:pblAlbums"></p:commandButton>
 										        
 					</div>
 					
@@ -130,14 +130,26 @@
 								</p:column>
 								
 								<p:column headerText="Actualizar">
-									<p:commandButton icon="pi pi-pencil" style="background-color: green"></p:commandButton>
+									<p:commandButton icon="pi pi-pencil" style="background-color: green" immediate="true"
+									action="#{adminAlbumsController.cargarAlbum(album)}" 
+									oncomplete="PF('dlgAlbums').show()" update="formAddUpdateAlbum:pblAlbums"></p:commandButton>
 								</p:column>
 								
 							</p:dataTable>
-
 							
-								<p:dialog id="dlgAlbum" class="dialogCentro" header="Editar Albums" widgetVar="dlgAlbums" modal="true" responsive="true" resizable="false" width="80%" height="500px" style="background-color: black">
-									
+								
+						</div>
+					</div>
+				</div>
+
+				<ui:include src="/pages/commons/footer.xhtml"></ui:include>
+
+			</div>
+		</h:form>
+		
+		
+			<p:dialog id="dlgAlbum" class="dialogCentro" header="Editar Albums" widgetVar="dlgAlbums" modal="true" responsive="true" resizable="false" width="80%" height="500px" style="background-color: black">
+					<h:form id="formAddUpdateAlbum">
 												<!-- panelGrid -->
 															<!--    col1                    col2                     -->
 															<!--    g pant chica, md pant mediana , lg pant grande   -->	
@@ -183,8 +195,8 @@
 											<f:selectItems var="artista" value="#{adminAlbumsController.artistas}" itemValue="#{artista.idArtista}" itemLabel="#{artista.nombre}" ></f:selectItems>
 										</p:selectOneMenu>
 										
-										<p:outputLabel id="lblEstatus1" value="" rendered="false" style="color:white;"></p:outputLabel>
-										<p:inputSwitch id="lblEstatus2" value="#{adminAlbumsController.album.estatus}" rendered="false" style="color:white;"></p:inputSwitch>
+										<p:outputLabel id="lblEstatus" value="Estatus: " rendered="#{adminAlbumsController.album.idAlbum != null}" style="color:white;"></p:outputLabel>
+										<p:inputSwitch id="inputEstatus" value="#{adminAlbumsController.album.estatus}" rendered="#{adminAlbumsController.album.idAlbum != null}" style="color:white;"></p:inputSwitch>
 										
 									</p:panelGrid>
 									
@@ -193,23 +205,16 @@
 															<!--    g pant chica, md pant mediana , lg pant grande   -->	
 															<!--    picture 4 col de 12, detalle 8 col de 12   -->	
 															
-									<p:panelGrid columns="2" layout="grid" styleClass="ui-panelgrid-blank" columnClasses="ui-g-6, ui-g-6">
-										<p:commandButton value="Guardar" update="messages, pblAlbums, tblAlbums" style="background-color: green" action="#{adminAlbumsController.guardar}"></p:commandButton>
-										<p:commandButton value="Cancelar" style="background-color: red"></p:commandButton>				        		        
-									</p:panelGrid>
-									
-									<p:ajax event="close" update="dlgAlbum" resetValues="true"></p:ajax>
-								</p:dialog>
-							
+															
+										<p:panelGrid columns="2" layout="grid" styleClass="ui-panelgrid-blank" columnClasses="ui-g-6, ui-g-6">
+											<p:commandButton value="Guardar" update="formAlbums:messages, formAddUpdateAlbum:pblAlbums, formAlbums:tblAlbums" style="background-color: green" action="#{adminAlbumsController.guardar}"></p:commandButton>
+											<p:commandButton value="Cancelar" style="background-color: red"></p:commandButton>				        		        
+										</p:panelGrid>
+										
 								
-						</div>
-					</div>
-				</div>
+					</h:form>
+			</p:dialog>
 
-				<ui:include src="/pages/commons/footer.xhtml"></ui:include>
-
-			</div>
-		</h:form>
 	</div>
 
 </h:body>

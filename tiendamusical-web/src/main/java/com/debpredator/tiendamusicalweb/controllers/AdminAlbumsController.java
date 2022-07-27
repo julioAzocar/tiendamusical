@@ -133,15 +133,18 @@ public class AdminAlbumsController {
 	//guarda album
 	public void guardar() {
 		
-		try {
-			CommonsUtils.guardarImagen(this.absolutePath, this.uploadedFile.getFileName(), this.inputStream);
-		} catch (IOException e) {
-			CommonsUtils.mostrarMensaje(FacesMessage.SEVERITY_ERROR, "ERROR!", "Error en guardar imagen de album");
+		if (this.uploadedFile != null) {
+			try {
+				CommonsUtils.guardarImagen(this.absolutePath, this.uploadedFile.getFileName(), this.inputStream);
+			} catch (IOException e) {
+				CommonsUtils.mostrarMensaje(FacesMessage.SEVERITY_ERROR, "ERROR!", "Error en guardar imagen de album");
+				
+				e.printStackTrace();
+			}
 			
-			e.printStackTrace();
+			this.album.setImagen(this.uploadedFile.getFileName());
 		}
-		
-		this.album.setImagen(this.uploadedFile.getFileName());
+
 
 		Album albumGuardado = this.adminAlbumsServiceImpl.guardarAlbum(this.album);
 		
@@ -155,6 +158,14 @@ public class AdminAlbumsController {
 			this.limpiarComponentes();
 		}
 	}
+	
+	//album selecionado en la fila de la tabla para actualizar
+	public void cargarAlbum(Album albumSeleccionado) {
+		this.album = albumSeleccionado;
+		
+
+	}
+	
 	
 	public SessionBean getSessionBean() {
 		return sessionBean;

@@ -48,8 +48,13 @@ public class AdminAlbumsServiceImpl implements AdminAlbumsService {
 	@Override
 	public Album guardarAlbum(Album album) {
 		
-		album.setFechaCreacion(LocalDateTime.now());
-		album.setEstatus(true);
+		if (album.getIdAlbum() != null) {
+			album.setFechaModificacion(LocalDateTime.now());
+		}else {
+			album.setFechaCreacion(LocalDateTime.now());
+			album.setEstatus(true);
+		}
+
 		
 		return this.albumDAO.save(album);
 	}
