@@ -92,7 +92,7 @@ public class loginController implements Serializable {
 
 			if (personaConsultada != null) {
 				
-				if (personaConsultada.getRol().getIdRol() == 4) {
+				if (personaConsultada.getRol().getIdRol() == 4 && personaConsultada.getCarrito() != null) {
 					  List<CarritoAlbum> carritoAlbumFiltrados = personaConsultada.getCarrito().getCarritosAlbum().stream().filter(ca ->
 						ca.getEstatus().equals("PENDIENTE")).collect(Collectors.toList());
 					

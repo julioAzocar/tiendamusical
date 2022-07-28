@@ -11,7 +11,9 @@ import org.apache.logging.log4j.Logger;
 
 import com.debpredator.tiendamusicalweb.session.SessionBean;
 import com.debpredator.tiendamusicalweb.utils.CommonsUtils;
+import com.devpredator.tiendamusicalentities.entities.Carrito;
 import com.devpredator.tiendamusicalentities.entities.Persona;
+import com.devpredator.tiendamusicalentities.entities.Rol;
 import com.devpredator.tiendamusicalservices.service.impl.RegistroServiceImpl;
 
 @ManagedBean//javax.faces.bean.ManagedBean;
@@ -39,6 +41,9 @@ public class RegistroController {
 	
 	public void limpiarComponentes() {
 		this.persona = new Persona();
+		this.persona.setRol(new Rol());
+		this.persona.setCarrito(new Carrito());
+		
 	}
 	
 	

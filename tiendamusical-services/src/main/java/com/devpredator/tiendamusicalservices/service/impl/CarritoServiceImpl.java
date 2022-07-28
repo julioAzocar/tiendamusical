@@ -43,8 +43,10 @@ public class CarritoServiceImpl implements CarritoService {
 	public float calcularTotal(Carrito carrito) {
 		float total = 0.0F;
 
-		for (CarritoAlbum carritoAlbum : carrito.getCarritosAlbum()) {
-			total+= carritoAlbum.getAlbum().getValor() * carritoAlbum.getCantidad();
+		if (carrito != null) {
+			for (CarritoAlbum carritoAlbum : carrito.getCarritosAlbum()) {
+				total+= carritoAlbum.getAlbum().getValor() * carritoAlbum.getCantidad();
+			}
 		}
 		
 		return total;

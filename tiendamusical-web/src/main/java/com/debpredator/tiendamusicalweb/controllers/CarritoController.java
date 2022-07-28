@@ -55,7 +55,9 @@ public class CarritoController {
 		
 		this.carritoServiceImpl.eliminarAlbumCarrito(carritoAlbum);
 		
-		this.sessionBean.getPersona().getCarrito().getCarritosAlbum().remove(carritoAlbum);
+		if (sessionBean.getPersona().getCarrito() != null) {
+			this.sessionBean.getPersona().getCarrito().getCarritosAlbum().remove(carritoAlbum);
+		}
 		
 		this.CalcularTotal();
 		

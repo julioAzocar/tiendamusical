@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.devpredator.tiendamusicaldata.dao.PersonaDAO;
 import com.devpredator.tiendamusicalentities.entities.Persona;
 import com.devpredator.tiendamusicalentities.entities.Rol;
+import com.devpredator.tiendamusicalservices.enums.RolEnum;
 import com.devpredator.tiendamusicalservices.service.RegistroService;
 
 @Service
@@ -23,7 +24,7 @@ public class RegistroServiceImpl implements RegistroService {
 		persona.setEstatus(true);
 		//rol por defecto para cliente es 4 y admin es 3
 		persona.setRol(new Rol());
-		persona.getRol().setIdRol(4L);
+		persona.getRol().setIdRol(RolEnum.CLIENTE.getClave());
 		
 		return personaDAO.save(persona);
 		
