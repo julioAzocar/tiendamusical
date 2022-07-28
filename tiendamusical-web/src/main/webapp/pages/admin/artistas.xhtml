@@ -51,6 +51,8 @@
 						
 		<h:form id="formArtistas">
 
+		<ui:include src="/pages/commons/loading.xhtml"></ui:include>
+		
 			<p:growl id="messages" showSummary="true" showDetail="true" skipDetailIfEqualsSummary="true" ></p:growl>
 
 
@@ -84,7 +86,7 @@
 							
 
 							
-							<p:dataTable id="tblArtistas" 
+							<p:dataTable id="tblArtistas" widgetVar="tblArtistas"
 								var="artista" value="#{adminArtistasController.artistas}" rows="10"
 								filteredValue="#{adminArtistasController.artistasFiltrados}"
 								paginator="true" rowsPerPageTemplate="10,30,50" reflow="true"
@@ -110,7 +112,16 @@
 									<p:outputLabel value="#{artista.subGenero.descripcion}"></p:outputLabel>
 								</p:column>
 								
-								<p:column headerText="Estatus" filterBy="#{artista.estatus}" filterMatchMode="contains">
+								<p:column headerText="Estatus" filterBy="#{artista.estatus}" filterMatchMode="exact">
+									
+									<f:facet name="filter">
+					                    <p:selectOneMenu onchange="PF('tblArtistas').filter()" >
+					                        <f:selectItem itemLabel="SELECCIONE" itemValue="#{null}" noSelectionOption="true" />
+					                         <f:selectItem itemLabel="HABILITADO" itemValue="true" />
+					                         <f:selectItem itemLabel="NO HABILITADO" itemValue="false" />
+					                    </p:selectOneMenu>
+					                </f:facet>
+					                
 									<p:outputLabel value="HABILITADO" rendered="#{artista.estatus}"></p:outputLabel>
 									<p:outputLabel value="NO HABILITADO" rendered="#{!artista.estatus}"></p:outputLabel>
 								</p:column>

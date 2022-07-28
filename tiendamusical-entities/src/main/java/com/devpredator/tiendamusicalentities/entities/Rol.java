@@ -17,14 +17,19 @@ public class Rol extends Common{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	
+	
 	@Column(name="idRol")
-	private long idRol;
+	private Long idRol;
+	
+	
 	@Column(name="nombre", length = 45,nullable = false)
 	private String nombre;
-	public long getIdRol() {
+	
+	public Long getIdRol() {
 		return idRol;
 	}
-	public void setIdRol(long idRol) {
+	public void setIdRol(Long idRol) {
 		this.idRol = idRol;
 	}
 	public String getNombre() {

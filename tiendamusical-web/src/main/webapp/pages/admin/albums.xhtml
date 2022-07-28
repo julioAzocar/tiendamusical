@@ -51,6 +51,8 @@
 						
 		<h:form id="formAlbums">
 
+			<ui:include src="/pages/commons/loading.xhtml"></ui:include>
+
 			<p:growl id="messages" showSummary="true" showDetail="true" skipDetailIfEqualsSummary="true" ></p:growl>
 
 
@@ -84,7 +86,7 @@
 							
 
 							
-							<p:dataTable id="tblAlbums" 
+							<p:dataTable id="tblAlbums" widgetVar="tblAlbums"
 								var="album" value="#{adminAlbumsController.albums}" rows="10"
 								filteredValue="#{adminAlbumsController.albumsFiltrados}"
 								paginator="true" rowsPerPageTemplate="10,30,50" reflow="true"
@@ -124,7 +126,16 @@
 									<p:outputLabel value="#{album.disquera.descripcion}"></p:outputLabel>
 								</p:column>
 								
-								<p:column headerText="Estatus" filterBy="#{album.estatus}" filterMatchMode="contains">
+								<p:column headerText="Estatus" filterBy="#{album.estatus}" filterMatchMode="exact">
+								
+									<f:facet name="filter">
+					                    <p:selectOneMenu onchange="PF('tblAlbums').filter()" >
+					                        <f:selectItem itemLabel="SELECCIONE" itemValue="#{null}" noSelectionOption="true" />
+					                         <f:selectItem itemLabel="HABILITADO" itemValue="true" />
+					                         <f:selectItem itemLabel="NO HABILITADO" itemValue="false" />
+					                    </p:selectOneMenu>
+					                </f:facet>
+					                
 									<p:outputLabel value="HABILITADO" rendered="#{album.estatus}"></p:outputLabel>
 									<p:outputLabel value="NO HABILITADO" rendered="#{!album.estatus}"></p:outputLabel>
 								</p:column>

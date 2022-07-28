@@ -1,0 +1,177 @@
+
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<!-- permite incluir contenido de otras pantallas para usar scripts.xhtml-->
+
+<h:head>
+	<ui:include src="/pages/commons/scripts.xhtml"></ui:include>
+
+	<script>
+	    function updateCount() {
+	        $("[id$='counter']").html($("[id$='txtDescripcion']").val().length + "/" + $("[id$='txtDescripcion']").attr('maxlength') + " characters used");
+	    }
+	</script>
+
+	<style>
+
+		body .ui-panelgrid .ui-panelgrid-cell {
+		    border: 1px solid #c8c8c8;
+		    background-color: rgb(0 0 0 / 80%);
+		    color: #333;
+		    padding: 0.571em 1em;
+		}
+		/*editar modal*/
+		body .ui-dialog .ui-dialog-content {
+		    background-color: black;
+		    color: #333;
+		    border: 1px solid #c8c8c8;
+		    padding: 0.571em 1em;
+		    line-height: 1.5;
+		    -webkit-box-sizing: content-box;
+		    -moz-box-sizing: content-box;
+		    box-sizing: content-box;
+		}
+		.dialogCentro{
+			top:1% !important;
+		}
+	</style>
+</h:head>
+
+<h:body style="background-color:black;">
+
+
+	<div class="ui-fluid">
+
+						
+		<h:form id="formPerfiles">
+
+			<ui:include src="/pages/commons/loading.xhtml"></ui:include>
+
+			<p:growl id="messages" showSummary="true" showDetail="true" skipDetailIfEqualsSummary="true" ></p:growl>
+
+
+			<ui:include src="/pages/commons/navbar.xhtml"></ui:include>
+
+			<div class="p-grid sample-layout">
+
+				<ui:include src="/pages/commons/header.xhtml"></ui:include>
+
+				<div class="p-col-12 p-md-10 p-col-nogutter" style="background-color: black">
+					<div class="p-grid">
+					
+					<div class="p-col-2" style="margin: 0px auto">
+				
+
+
+						<p:commandButton value="Agregar" icon="pi pi-pencil" 
+							oncomplete="PF('dlgPerfiles').show()" style="background-color: green"
+							action="#{adminRolesController.limpiarComponentes}"
+							inmediate="true" update="formAddUpdatePerfiles:pblPerfiles"></p:commandButton>
+										        
+					</div>
+					
+						<div class="p-col-12" style="margin: 0px auto">
+															<!-- panelGrid -->
+															<!--    col1                    col2                     -->
+															<!--    g pant chica, md pant mediana , lg pant grande   -->	
+															<!--    picture 4 col de 12, detalle 8 col de 12   -->	
+
+							<!--  var="factura" value="#{misComprasController.facturas}"  -->
+							
+
+							<!-- widgetVar para filtar estatus -->
+							<p:dataTable id="tblPerfiles" widgetVar="tblPerfiles"
+							emptyMessage="Sin Perfiles"
+								var="rol" value="#{adminRolesController.roles}" rows="10"
+								filteredValue="#{adminRolesController.rolesFiltrados}"
+								paginator="true" rowsPerPageTemplate="10,30,50" reflow="true"
+								paginatorPosition="bottom"
+								paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+								
+								<f:facet name="header">Listado de Perfiles</f:facet>
+								
+								
+								<p:column headerText="Nombre" filterBy="#{rol.nombre}" filterMatchMode="contains">
+									<p:outputLabel value="#{rol.nombre}"></p:outputLabel>
+								</p:column>
+
+								<p:column headerText="Fecha de Creacion">
+									<p:outputLabel value="#{rol.fechaCreacion}" converter="localDateTimeConverter"></p:outputLabel>
+								</p:column>
+								
+								<p:column headerText="Estatus" filterBy="#{rol.estatus}" filterMatchMode="exact">
+								
+								    <f:facet name="filter">
+					                    <p:selectOneMenu onchange="PF('tblPerfiles').filter()" >
+					                        <f:selectItem itemLabel="SELECCIONE" itemValue="#{null}" noSelectionOption="true" />
+					                         <f:selectItem itemLabel="HABILITADO" itemValue="true" />
+					                         <f:selectItem itemLabel="NO HABILITADO" itemValue="false" />
+					                    </p:selectOneMenu>
+					                </f:facet>
+                
+									<p:outputLabel value="HABILITADO" rendered="#{rol.estatus}"></p:outputLabel>
+									<p:outputLabel value="NO HABILITADO" rendered="#{!rol.estatus}"></p:outputLabel>
+								</p:column>
+								
+								<p:column headerText="Actualizar">
+									<p:commandButton icon="pi pi-pencil" style="background-color: green" immediate="true"
+									action="#{adminRolesController.cargarRol(rol)}" 
+									oncomplete="PF('dlgPerfiles').show()" update="formAddUpdatePerfiles:pblPerfiles"></p:commandButton>
+								</p:column>
+								
+							</p:dataTable>
+							
+								
+						</div>
+					</div>
+				</div>
+
+				<ui:include src="/pages/commons/footer.xhtml"></ui:include>
+
+			</div>
+		</h:form>
+		
+		
+			<p:dialog id="dlgPerfiles" class="dialogCentro" header="Editar Perfiles" widgetVar="dlgPerfiles" modal="true" responsive="true" resizable="false" width="80%" height="500px" style="background-color: black">
+					<h:form id="formAddUpdatePerfiles">
+					
+	
+												<!-- panelGrid -->
+															<!--    col1                    col2                     -->
+															<!--    g pant chica, md pant mediana , lg pant grande   -->	
+															<!--    picture 4 col de 12, detalle 8 col de 12   -->	
+									<p:panelGrid id="pblPerfiles" columns="2" layout="grid" styleClass="ui-panelgrid-blank" columnClasses="ui-g-12 ui-md-4 ui-lg-4,ui-g-12 ui-md-8 ui-lg-8"  style="background-color: black">
+										
+										<p:outputLabel id="lblNombre" value="Nombre: " for="txtNombre"  style="color:white;"></p:outputLabel>
+										<p:inputText id="txtNombre" required="true" requiredMessage="Nombre es requerido" value="#{adminRolesController.rol.nombre}"></p:inputText>
+										
+
+										<p:outputLabel id="lblEstatus" value="Estatus: " rendered="#{adminRolesController.rol.idRol != null}" style="color:white;"></p:outputLabel>
+										<p:inputSwitch id="inputEstatus" value="#{adminRolesController.rol.estatus}" rendered="#{adminRolesController.rol.idRol != null}" style="color:white;"></p:inputSwitch>
+										
+									</p:panelGrid>
+									
+												<!-- panelGrid -->
+															<!--    col1                    col2                     -->
+															<!--    g pant chica, md pant mediana , lg pant grande   -->	
+															<!--    picture 4 col de 12, detalle 8 col de 12   -->	
+															
+															
+										<p:panelGrid columns="2" layout="grid" styleClass="ui-panelgrid-blank" columnClasses="ui-g-6, ui-g-6">
+											<p:commandButton value="Guardar" update="formPerfiles:messages, formAddUpdatePerfiles:pblPerfiles, formPerfiles:tblPerfiles" style="background-color: green" action="#{adminRolesController.guardar}"></p:commandButton>
+											<p:commandButton value="Cancelar" style="background-color: red"></p:commandButton>				        		        
+										</p:panelGrid>
+										
+								
+					</h:form>
+			</p:dialog>
+
+	</div>
+
+</h:body>
+
+</html>

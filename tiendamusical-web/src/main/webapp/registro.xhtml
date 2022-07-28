@@ -1,0 +1,71 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"      
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"> <!-- permite incluir contenido de otras pantallas para usar scripts.xhtml-->
+      
+<h:head>
+<title>Pantalla Login</title>
+
+ <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+ 
+	<h:outputStylesheet library="css" name="login.css"></h:outputStylesheet>
+
+</h:head>
+
+<h:body style="background-color:black;">
+      
+
+      	<h:form id="formRegistro">
+      	
+      	<ui:include src="/pages/commons/loading.xhtml"></ui:include>
+      	
+      	<p:growl id="growl" showDetail="true" skipDetailIfEqualsSummary="true"/> <!-- 5 seg y se cierra  skipDetailIfEqualsSummary si son iguales -->
+      	<!-- <p:growl id="growl" showDetail="true" />  usuario la cierra-->
+      	
+      	<p:panel id="pnlRegistro" header="Registro de Usuario" style="text-align:center;width:80%;margin:0 auto;">
+      	
+      	<p:graphicImage name="imagenes/fondo_musica.png" width="10%"/>
+      	
+      		<p:panelGrid id="pnlGridRegistro" columns="1" layout="grid"
+                 columnClasses="ui-g-12 ui-md-12"
+                 styleClass="ui-panelgrid-blank">
+                 
+      			<p:outputLabel value="Nombre:" for="txtNombre" styleClass="formLabelText" style="color:white;"> </p:outputLabel>
+      			<p:inputText id="txtNombre" value="#{registroController.persona.nombre}" required="true" requiredMessage="El nombre es requerido" style="width:50%"></p:inputText>
+      			
+      			<p:outputLabel value="Primer Apellido:" for="txtPrimerApellido" styleClass="formLabelText" style="color:white;"> </p:outputLabel>
+      			<p:inputText id="txtPrimerApellido" value="#{registroController.persona.primerApellido}" required="true" requiredMessage="El Primer Apellido es requerido" style="width:50%"></p:inputText>
+      			
+      			<p:outputLabel value="Segundo Apellido:" for="txtSegundoApellido" styleClass="formLabelText" style="color:white;"> </p:outputLabel>
+      			<p:inputText id="txtSegundoApellido" value="#{registroController.persona.segundoApellido}" required="true" requiredMessage="El Segundo Apellido es requerido" style="width:50%"></p:inputText>
+      			
+      			<p:outputLabel value="Email:" for="txtEmail" styleClass="formLabelText" style="color:white;"> </p:outputLabel>
+      			<p:inputText id="txtEmail" value="#{registroController.persona.email}" required="true" requiredMessage="El Email es requerido" style="width:50%" validatorMessage="El formato del email es incorrecto">
+					<f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+				</p:inputText>
+      			
+      			<p:outputLabel value="Usuario:" for="txtUsuario" styleClass="formLabelText" style="color:white;"> </p:outputLabel>
+      			<p:inputText id="txtUsuario" value="#{registroController.persona.usuario}" required="true" requiredMessage="El usuario es requerido" style="width:50%"></p:inputText>
+      			
+      			<p:outputLabel value="Password:" for="txtPassword" styleClass="formLabelText"  style="color:white;"> </p:outputLabel>
+      			<p:password id="txtPassword" value="#{registroController.persona.password}" required="true"  requiredMessage="El password es requerido" style="width:50%"></p:password>
+
+
+      		</p:panelGrid>
+      		
+      		<br/>
+      		<p:panelGrid columns="1" layout="grid"
+                 columnClasses="ui-g-12 ui-md-12"
+                 styleClass="ui-panelgrid-blank">
+                 
+      		    <p:commandButton action="#{registroController.guardar}" value="Registrarce" update="pnlGridRegistro,growl" style="background-color:green;width:50%"></p:commandButton>
+				<p:commandButton action="#{paginaController.irPagina('/login.xhtml')}" value="Cancelar" immediate="true" style="background-color:red;width:50%"></p:commandButton>
+      		
+      		</p:panelGrid>
+      	</p:panel>
+		</h:form>
+
+		
+</h:body>
+</html>

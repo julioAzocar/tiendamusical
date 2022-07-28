@@ -22,9 +22,9 @@ public class Persona extends Common{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="idPersona")
-	private long idPersona;
+	private Long idPersona;
 	
-	@Column(name="numeroIdentificacion", length = 12,nullable = false)
+	@Column(name="numeroIdentificacion", length = 12)
 	private String numeroIdentificacion;
 	
 	@Column(name="nombre", length = 100,nullable = false)
@@ -71,11 +71,11 @@ public class Persona extends Common{
 	private Carrito carrito;
 	
 	
-	public long getIdPersona() {
+	public Long getIdPersona() {
 		return idPersona;
 	}
 
-	public void setIdPersona(long idPersona) {
+	public void setIdPersona(Long idPersona) {
 		this.idPersona = idPersona;
 	}
 
